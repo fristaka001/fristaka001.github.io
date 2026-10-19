@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Analyst | Fristaka Putri Prawahyu</title>
+  <meta name="description" content="System Analyst portfolio of Fristaka Putri Prawahyu: requirements analysis, business process design, system design, and documentation.">
+
+  <!-- Marks that JavaScript is active (used for the fade-in effect) -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    /* =========================================================
+       1. COLORS AND BASIC SETTINGS
+       Same palette as the homepage. Change colors here only.
+       ========================================================= */
+    :root {
+      --navy: #1f2f4a;
+      --navy-soft: #3a4b68;
+      --sage: #8fa58e;
+      --sage-dark: #5f7a62;
+      --sage-light: #e6ede4;
+      --offwhite: #f7f5f0;
+      --white: #ffffff;
+      --text: #2b3445;
+      --muted: #6b7384;
+      --border: #e3e0d8;
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--offwhite);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--sage-dark);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    .container { width: min(1080px, 100% - 2.5rem); margin-inline: auto; }
+
+    section { padding: 5rem 0; scroll-margin-top: 70px; }
+
+    .section-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage-dark);
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    h1, h2, h3 { color: var(--navy); line-height: 1.25; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin-bottom: 0.8rem; }
+
+    .section-intro { color: var(--muted); max-width: 580px; margin-bottom: 2.5rem; }
+
+    .skip-link {
+      position: absolute; left: -999px; top: 0;
+      background: var(--navy); color: var(--white);
+      padding: 0.6rem 1rem; z-index: 300;
+    }
+    .skip-link:focus { left: 0; }
+
+    /* =========================================================
+       2. HEADER AND NAVIGATION
+       ========================================================= */
+    .site-header {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(247, 245, 240, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 0.9rem 0;
+    }
+
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+
+    .brand { font-weight: 700; color: var(--navy); }
+    .brand span { color: var(--sage-dark); }
+
+    .back-link {
+      font-size: 0.85rem;
+      color: var(--sage-dark);
+      font-weight: 600;
+      border: 1px solid var(--sage);
+      border-radius: 999px;
+      padding: 0.2rem 0.8rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .back-link:hover { background: var(--sage-dark); color: var(--white); }
+
+    .header-right { display: flex; align-items: center; gap: 1.2rem; }
+
+    .nav-links { display: flex; gap: 1.4rem; list-style: none; font-size: 0.92rem; }
+    .nav-links a {
+      color: var(--navy-soft);
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .nav-links a:hover { color: var(--navy); border-color: var(--sage); }
+
+    /* Language toggle (ID / EN) */
+    .lang-toggle {
+      display: inline-flex;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--white);
+      overflow: hidden;
+    }
+    .lang-btn {
+      border: none; background: transparent; cursor: pointer;
+      font: inherit; font-size: 0.8rem; font-weight: 700;
+      color: var(--muted);
+      padding: 0.3rem 0.8rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-btn[aria-pressed="true"] { background: var(--navy); color: var(--white); }
+
+    /* Mobile menu button (hidden on desktop) */
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--border);
+      background: var(--white);
+      border-radius: 10px;
+      width: 40px; height: 40px;
+      cursor: pointer;
+      color: var(--navy);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    /* =========================================================
+       3. HERO
+       ========================================================= */
+    .hero { padding: 5.5rem 0 4.5rem; }
+
+    .hero-inner {
+      display: grid; grid-template-columns: 1.5fr 1fr;
+      gap: 3rem; align-items: center;
+    }
+
+    .hero h1 { font-size: clamp(2.1rem, 5vw, 3.3rem); margin-bottom: 1.2rem; }
+    .hero p { color: var(--muted); max-width: 560px; }
+
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.6rem;
+      border-radius: 999px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: transform 0.2s, background 0.2s, color 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--navy); color: var(--white); }
+    .btn-primary:hover { background: var(--navy-soft); }
+    .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); }
+    .btn-outline:hover { background: var(--navy); color: var(--white); }
+
+    .focus-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+    }
+    .focus-card h2 { font-size: 1rem; margin-bottom: 1rem; }
+    .focus-card ul { list-style: none; }
+    .focus-card li {
+      padding: 0.65rem 0 0.65rem 1.4rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.93rem;
+      color: var(--muted);
+      position: relative;
+    }
+    .focus-card li:first-child { border-top: none; }
+    .focus-card li::before {
+      content: ""; position: absolute; left: 0; top: 1.15rem;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--sage);
+    }
+
+    /* =========================================================
+       4. ABOUT
+       ========================================================= */
+    .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; }
+
+    .fact-list { list-style: none; }
+    .fact-list li {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--sage);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      font-size: 0.93rem;
+      color: var(--muted);
+    }
+    .fact-list strong { display: block; color: var(--navy); }
+
+    /* =========================================================
+       5. CORE SKILLS
+       ========================================================= */
+    .skills { background: var(--navy); }
+    .skills .section-label { color: var(--sage); }
+    .skills h2 { color: var(--white); }
+    .skills .section-intro { color: #c3cad8; }
+
+    .skill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .skill-box {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .skill-box:hover { border-color: var(--sage); transform: translateY(-3px); }
+    .skill-box h3 { color: var(--white); font-size: 1.05rem; margin-bottom: 0.4rem; }
+    .skill-box p { color: #c3cad8; font-size: 0.9rem; }
+
+    /* =========================================================
+       6. FEATURED PROJECTS
+       ========================================================= */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.6rem;
+    }
+
+    .project-card {
+      display: flex; flex-direction: column;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 30px rgba(31, 47, 74, 0.09);
+      border-color: var(--sage);
+    }
+
+    /* Image area: the placeholder sits behind the real image.
+       When your image exists, it covers the placeholder automatically. */
+    .project-media {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background: var(--sage-light);
+      border-bottom: 1px solid var(--border);
+    }
+    .project-placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.3rem; text-align: center; padding: 1rem;
+      color: var(--sage-dark); font-size: 0.9rem; font-weight: 600;
+    }
+    .project-placeholder code {
+      font-size: 0.75rem; font-weight: 400; color: var(--muted);
+      word-break: break-all;
+    }
+    .project-media img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .project-body { padding: 1.6rem; display: flex; flex-direction: column; flex: 1; }
+
+    .project-badge {
+      align-self: flex-start;
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.2rem 0.75rem; border-radius: 999px;
+      margin-bottom: 0.8rem;
+      background: var(--sage-light); color: var(--sage-dark);
+    }
+    .project-badge.is-final { background: var(--navy); color: var(--white); }
+
+    .project-body h3 { font-size: 1.3rem; margin-bottom: 0.6rem; }
+    .project-body p { color: var(--muted); font-size: 0.93rem; margin-bottom: 1rem; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin-top: auto; }
+    .tags li {
+      font-size: 0.78rem; padding: 0.22rem 0.75rem;
+      border-radius: 999px;
+      background: var(--offwhite); border: 1px solid var(--border);
+      color: var(--navy-soft);
+    }
+
+    .project-note {
+      margin-top: 1rem; padding-top: 0.9rem;
+      border-top: 1px dashed var(--border);
+      font-size: 0.83rem; font-style: italic; color: var(--muted);
+    }
+
+    /* =========================================================
+       7. CERTIFICATION
+       ========================================================= */
+    .certification { background: var(--white); border-block: 1px solid var(--border); }
+
+    .cert-card {
+      display: flex; gap: 1.5rem; align-items: center;
+      background: var(--offwhite);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      max-width: 760px;
+    }
+    .cert-icon {
+      flex-shrink: 0;
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--sage-light); color: var(--sage-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+    }
+    .cert-card h3 { font-size: 1.25rem; margin-bottom: 0.2rem; }
+    .cert-issuer { color: var(--sage-dark); font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .cert-card p { color: var(--muted); font-size: 0.93rem; }
+
+    /* =========================================================
+       8. CONTACT
+       ========================================================= */
+    .contact-box {
+      background: var(--sage-light);
+      border-radius: var(--radius);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .contact-box p { color: var(--muted); max-width: 480px; margin: 0 auto 1.8rem; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+
+    /* =========================================================
+       9. FOOTER
+       ========================================================= */
+    .site-footer { padding: 2rem 0; text-align: center; font-size: 0.88rem; color: var(--muted); }
+    .site-footer a { color: var(--sage-dark); font-weight: 600; }
+    .site-footer a:hover { text-decoration: underline; }
+    .site-footer p + p { margin-top: 0.3rem; }
+
+    /* =========================================================
+       10. FADE-IN EFFECT (only when JavaScript is active)
+       ========================================================= */
+    .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .js .reveal.is-visible { opacity: 1; transform: none; }
+
+    /* =========================================================
+       11. RESPONSIVE
+       ========================================================= */
+    @media (max-width: 900px) {
+      .hero-inner, .about-grid { grid-template-columns: 1fr; }
+      .skill-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .menu-toggle { display: block; }
+
+      .header-inner { flex-wrap: wrap; }
+      .header-right { gap: 0.7rem; }
+
+      .nav {
+        display: none;
+        order: 3; flex-basis: 100%;
+        padding-top: 0.5rem;
+      }
+      .nav.is-open { display: block; }
+      .nav-links { flex-direction: column; gap: 0.2rem; }
+      .nav-links a { display: block; padding: 0.6rem 0; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 3.5rem 0; }
+      .hero { padding: 3.5rem 0; }
+      .skill-grid { grid-template-columns: 1fr; }
+      .cert-card { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to main content</a>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="header-left">
+        <a class="brand" href="../index.html" aria-label="Fristaka, back to homepage">Fristaka<span>.</span></a>
+        <!-- Link back to the main homepage -->
+        <a class="back-link" href="../index.html" data-i18n="nav_back">&larr; Homepage</a>
+      </div>
+
+      <div class="header-right">
+        <!-- Language toggle: ID / EN -->
+        <div class="lang-toggle" role="group" aria-label="Language" data-i18n-aria="lang_label">
+          <button type="button" class="lang-btn" data-lang="id" aria-pressed="false">ID</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+        </div>
+
+        <!-- Menu button (only shown on mobile) -->
+        <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu" data-i18n-aria="menu_label">&#9776;</button>
+      </div>
+
+      <nav class="nav" id="siteNav" aria-label="Page navigation" data-i18n-aria="nav_label">
+        <ul class="nav-links">
+          <li><a href="#about" data-i18n="nav_about">About</a></li>
+          <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+          <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
+          <li><a href="#certification" data-i18n="nav_cert">Certification</a></li>
+          <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="top">
+      <div class="container hero-inner">
+        <div class="reveal">
+          <p class="section-label" data-i18n="hero_label">Portfolio &middot; System Analyst</p>
+          <h1 data-i18n="hero_title">Understanding Problems. Designing Better Systems.</h1>
+          <!-- EDIT: change this introduction text (and its Indonesian version in the script below) -->
+          <p data-i18n="hero_intro">I am a D3 Informatics Management graduate from ULBI who is interested in requirements analysis, business process design, information system design, and system documentation. This page presents the projects and certification related to that work.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#projects" data-i18n="hero_btn_projects">View Projects</a>
+            <a class="btn btn-outline" href="#contact" data-i18n="hero_btn_contact">Contact Me</a>
+          </div>
+        </div>
+
+        <aside class="focus-card reveal" aria-labelledby="focusTitle">
+          <h2 id="focusTitle" data-i18n="focus_title">Focus Areas</h2>
+          <ul>
+            <li data-i18n="focus_1">Requirements analysis</li>
+            <li data-i18n="focus_2">Business process design</li>
+            <li data-i18n="focus_3">Information system design</li>
+            <li data-i18n="focus_4">System documentation</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-text reveal">
+          <p class="section-label" data-i18n="about_label">About Me</p>
+          <h2 data-i18n="about_title">Fristaka Putri Prawahyu</h2>
+          <!-- EDIT: change the three paragraphs below -->
+          <p data-i18n="about_p1">I graduated in 2025 from the D3 Informatics Management program at Universitas Logistik dan Bisnis Internasional (ULBI). I am drawn to the early stages of building an information system: understanding what users need, mapping how a process works, and turning that into a clear design.</p>
+          <p data-i18n="about_p2">During my internship at Diskominfo Kabupaten Jombang in the Aplikasi Informatika division, I worked on the planning stage of SIAGA, including requirements analysis, business process design, and mockups. I later implemented and tested SIAGA as my final academic project.</p>
+          <p data-i18n="about_p3">I also hold a System Analyst certification from LSP ULBI on behalf of BNSP.</p>
+        </div>
+
+        <ul class="fact-list reveal" aria-label="Education, certification and internship" data-i18n-aria="about_facts_label">
+          <li>
+            <strong data-i18n="fact_edu_title">Education</strong>
+            <span data-i18n="fact_edu_text">D3 Manajemen Informatika, ULBI (graduated 2025)</span>
+          </li>
+          <li>
+            <strong data-i18n="fact_cert_title">Certification</strong>
+            <span data-i18n="fact_cert_text">System Analyst, LSP ULBI on behalf of BNSP</span>
+          </li>
+          <li>
+            <strong data-i18n="fact_intern_title">Internship</strong>
+            <span data-i18n="fact_intern_text">Diskominfo Kabupaten Jombang, Aplikasi Informatika division</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== CORE SKILLS ===================== -->
+    <section class="skills" id="skills">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label" data-i18n="skills_label">Core Skills</p>
+          <h2 data-i18n="skills_title">What I Bring to System Analysis</h2>
+          <p class="section-intro" data-i18n="skills_intro">The foundations I use when analyzing and designing information systems.</p>
+        </div>
+
+        <div class="skill-grid">
+          <!-- EDIT: to add a skill, copy one skill-box block and change its text -->
+          <div class="skill-box reveal">
+            <h3 data-i18n="skill_1_title">Requirements Analysis</h3>
+            <p data-i18n="skill_1_text">Identifying and documenting what users and organizations need from a system.</p>
+          </div>
+          <div class="skill-box reveal">
+            <h3 data-i18n="skill_2_title">Business Process Modeling</h3>
+            <p data-i18n="skill_2_text">Mapping and designing business process flows so they are easy to understand.</p>
+          </div>
+          <div class="skill-box reveal">
+            <h3 data-i18n="skill_3_title">System Design</h3>
+            <p data-i18n="skill_3_text">Planning the structure and features of an information system.</p>
+          </div>
+          <div class="skill-box reveal">
+            <h3 data-i18n="skill_4_title">System Documentation</h3>
+            <p data-i18n="skill_4_text">Writing clear documentation that explains how a system is meant to work.</p>
+          </div>
+          <div class="skill-box reveal">
+            <h3 data-i18n="skill_5_title">Basic Database &amp; SQL</h3>
+            <p data-i18n="skill_5_text">Foundational knowledge of database concepts and SQL.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FEATURED PROJECTS ===================== -->
+    <section id="projects">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label" data-i18n="projects_label">Featured Projects</p>
+          <h2 data-i18n="projects_title">Selected Work</h2>
+          <p class="section-intro" data-i18n="projects_intro">SIAGA appears twice because the internship and final project covered different stages of the work.</p>
+        </div>
+
+        <div class="project-grid">
+
+          <!-- ---------- PROJECT 1: SIAGA (Internship) ---------- -->
+          <article class="project-card reveal">
+            <div class="project-media">
+              <div class="project-placeholder">
+                <span data-i18n="img_placeholder">Add project image here</span>
+                <code>images/siaga-business-process.png</code>
+              </div>
+              <!-- EDIT IMAGE: put your file in system-analyst/images/ and change the file name in src below -->
+              <img src="images/siaga-business-process.png" alt="SIAGA internship: business process design" data-i18n-alt="p1_alt">
+            </div>
+            <div class="project-body">
+              <span class="project-badge" data-i18n="p1_badge">Internship</span>
+              <h3>SIAGA</h3>
+              <!-- EDIT: change the description -->
+              <p data-i18n="p1_text">An information system for government activity agendas. During my internship at Diskominfo Kabupaten Jombang, I worked on requirements analysis, business process design, and mockups.</p>
+              <ul class="tags">
+                <li data-i18n="tag_req">Requirements Analysis</li>
+                <li data-i18n="tag_bp">Business Process Design</li>
+                <li data-i18n="tag_mockup">Mockup</li>
+              </ul>
+              <p class="project-note" data-i18n="p1_note">The internship stage focused on planning, not on a complete application implementation.</p>
+            </div>
+          </article>
+
+          <!-- ---------- PROJECT 2: SIAGA (Final Project) ---------- -->
+          <article class="project-card reveal">
+            <div class="project-media">
+              <div class="project-placeholder">
+                <span data-i18n="img_placeholder">Add project image here</span>
+                <code>images/siaga-final-project.png</code>
+              </div>
+              <!-- EDIT IMAGE: change the file name in src below -->
+              <img src="images/siaga-final-project.png" alt="SIAGA final project: application" data-i18n-alt="p2_alt">
+            </div>
+            <div class="project-body">
+              <span class="project-badge is-final" data-i18n="p2_badge">Final Project</span>
+              <h3>SIAGA</h3>
+              <!-- EDIT: change the description -->
+              <p data-i18n="p2_text">The same system, taken further as my final academic project: I implemented the application and carried out system testing.</p>
+              <ul class="tags">
+                <li data-i18n="tag_impl">Implementation</li>
+                <li data-i18n="tag_test">System Testing</li>
+                <li data-i18n="tag_final">Final Project</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- ---------- PROJECT 3: SIPSTOBA ---------- -->
+          <article class="project-card reveal">
+            <div class="project-media">
+              <div class="project-placeholder">
+                <span data-i18n="img_placeholder">Add project image here</span>
+                <code>images/sipstoba-stock-report.png</code>
+              </div>
+              <!-- EDIT IMAGE: change the file name in src below -->
+              <img src="images/sipstoba-stock-report.png" alt="SIPSTOBA: inventory information system" data-i18n-alt="p3_alt">
+            </div>
+            <div class="project-body">
+              <span class="project-badge" data-i18n="p3_badge">Inventory System</span>
+              <h3>SIPSTOBA</h3>
+              <!-- EDIT: change the description -->
+              <p data-i18n="p3_text">Sistem Informasi Persediaan Stok Barang (inventory information system) for Toko Nabila, with incoming and outgoing stock transactions and stock reports.</p>
+              <ul class="tags">
+                <li data-i18n="tag_in">Incoming Stock</li>
+                <li data-i18n="tag_out">Outgoing Stock</li>
+                <li data-i18n="tag_report">Stock Reports</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CERTIFICATION ===================== -->
+    <section class="certification" id="certification">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label" data-i18n="cert_label">Certification</p>
+          <h2 data-i18n="cert_title">Professional Certification</h2>
+        </div>
+
+        <!-- EDIT: change the certification text if needed -->
+        <div class="cert-card reveal">
+          <div class="cert-icon" aria-hidden="true">&#10003;</div>
+          <div>
+            <h3 data-i18n="cert_name">System Analyst Certification</h3>
+            <p class="cert-issuer" data-i18n="cert_issuer">LSP ULBI on behalf of BNSP</p>
+            <p data-i18n="cert_text">A competency certification related to the work of a system analyst.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <p class="section-label" data-i18n="contact_label">Contact</p>
+          <h2 data-i18n="contact_title">Let's Connect</h2>
+          <p data-i18n="contact_text">I would be glad to hear from you. Feel free to reach out through the links below.</p>
+          <div class="contact-links">
+            <!-- EDIT EMAIL: replace your-email@example.com with your real email -->
+            <a class="btn btn-primary" href="mailto:your-email@example.com">Email</a>
+            <!-- EDIT LINKEDIN: replace the address with your real LinkedIn profile URL -->
+            <a class="btn btn-outline" href="https://www.linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <!-- GITHUB: this points to your profile; change it only if needed -->
+            <a class="btn btn-outline" href="https://github.com/fristaka001" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Fristaka Putri Prawahyu.</p>
+      <p><a href="../index.html" data-i18n="footer_back">Back to Homepage</a></p>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       TEXT TRANSLATIONS (EN / ID)
+       To change a text: find its key (for example "hero_intro")
+       and edit BOTH the "en" and the "id" versions.
+       ========================================================= */
+    var translations = {
+      en: {
+        page_title: "System Analyst | Fristaka Putri Prawahyu",
+        skip: "Skip to main content",
+        lang_label: "Language",
+        menu_label: "Open menu",
+        nav_label: "Page navigation",
+        nav_back: "\u2190 Homepage",
+        nav_about: "About",
+        nav_skills: "Skills",
+        nav_projects: "Projects",
+        nav_cert: "Certification",
+        nav_contact: "Contact",
+
+        hero_label: "Portfolio \u00B7 System Analyst",
+        hero_title: "Understanding Problems. Designing Better Systems.",
+        hero_intro: "I am a D3 Informatics Management graduate from ULBI who is interested in requirements analysis, business process design, information system design, and system documentation. This page presents the projects and certification related to that work.",
+        hero_btn_projects: "View Projects",
+        hero_btn_contact: "Contact Me",
+        focus_title: "Focus Areas",
+        focus_1: "Requirements analysis",
+        focus_2: "Business process design",
+        focus_3: "Information system design",
+        focus_4: "System documentation",
+
+        about_label: "About Me",
+        about_title: "Fristaka Putri Prawahyu",
+        about_p1: "I graduated in 2025 from the D3 Informatics Management program at Universitas Logistik dan Bisnis Internasional (ULBI). I am drawn to the early stages of building an information system: understanding what users need, mapping how a process works, and turning that into a clear design.",
+        about_p2: "During my internship at Diskominfo Kabupaten Jombang in the Aplikasi Informatika division, I worked on the planning stage of SIAGA, including requirements analysis, business process design, and mockups. I later implemented and tested SIAGA as my final academic project.",
+        about_p3: "I also hold a System Analyst certification from LSP ULBI on behalf of BNSP.",
+        about_facts_label: "Education, certification and internship",
+        fact_edu_title: "Education",
+        fact_edu_text: "D3 Manajemen Informatika, ULBI (graduated 2025)",
+        fact_cert_title: "Certification",
+        fact_cert_text: "System Analyst, LSP ULBI on behalf of BNSP",
+        fact_intern_title: "Internship",
+        fact_intern_text: "Diskominfo Kabupaten Jombang, Aplikasi Informatika division",
+
+        skills_label: "Core Skills",
+        skills_title: "What I Bring to System Analysis",
+        skills_intro: "The foundations I use when analyzing and designing information systems.",
+        skill_1_title: "Requirements Analysis",
+        skill_1_text: "Identifying and documenting what users and organizations need from a system.",
+        skill_2_title: "Business Process Modeling",
+        skill_2_text: "Mapping and designing business process flows so they are easy to understand.",
+        skill_3_title: "System Design",
+        skill_3_text: "Planning the structure and features of an information system.",
+        skill_4_title: "System Documentation",
+        skill_4_text: "Writing clear documentation that explains how a system is meant to work.",
+        skill_5_title: "Basic Database & SQL",
+        skill_5_text: "Foundational knowledge of database concepts and SQL.",
+
+        projects_label: "Featured Projects",
+        projects_title: "Selected Work",
+        projects_intro: "SIAGA appears twice because the internship and final project covered different stages of the work.",
+        img_placeholder: "Add project image here",
+        p1_alt: "SIAGA internship: business process design",
+        p1_badge: "Internship",
+        p1_text: "An information system for government activity agendas. During my internship at Diskominfo Kabupaten Jombang, I worked on requirements analysis, business process design, and mockups.",
+        p1_note: "The internship stage focused on planning, not on a complete application implementation.",
+        p2_alt: "SIAGA final project: application",
+        p2_badge: "Final Project",
+        p2_text: "The same system, taken further as my final academic project: I implemented the application and carried out system testing.",
+        p3_alt: "SIPSTOBA: inventory information system",
+        p3_badge: "Inventory System",
+        p3_text: "Sistem Informasi Persediaan Stok Barang (inventory information system) for Toko Nabila, with incoming and outgoing stock transactions and stock reports.",
+        tag_req: "Requirements Analysis",
+        tag_bp: "Business Process Design",
+        tag_mockup: "Mockup",
+        tag_impl: "Implementation",
+        tag_test: "System Testing",
+        tag_final: "Final Project",
+        tag_in: "Incoming Stock",
+        tag_out: "Outgoing Stock",
+        tag_report: "Stock Reports",
+
+        cert_label: "Certification",
+        cert_title: "Professional Certification",
+        cert_name: "System Analyst Certification",
+        cert_issuer: "LSP ULBI on behalf of BNSP",
+        cert_text: "A competency certification related to the work of a system analyst.",
+
+        contact_label: "Contact",
+        contact_title: "Let's Connect",
+        contact_text: "I would be glad to hear from you. Feel free to reach out through the links below.",
+        footer_back: "Back to Homepage"
+      },
+
+      id: {
+        page_title: "System Analyst | Fristaka Putri Prawahyu",
+        skip: "Langsung ke konten utama",
+        lang_label: "Bahasa",
+        menu_label: "Buka menu",
+        nav_label: "Navigasi halaman",
+        nav_back: "\u2190 Beranda",
+        nav_about: "Tentang",
+        nav_skills: "Keahlian",
+        nav_projects: "Proyek",
+        nav_cert: "Sertifikasi",
+        nav_contact: "Kontak",
+
+        hero_label: "Portofolio \u00B7 System Analyst",
+        hero_title: "Memahami Masalah. Merancang Sistem yang Lebih Baik.",
+        hero_intro: "Saya lulusan D3 Manajemen Informatika ULBI yang tertarik pada analisis kebutuhan, perancangan proses bisnis, perancangan sistem informasi, dan dokumentasi sistem. Halaman ini menampilkan proyek dan sertifikasi yang berkaitan dengan bidang tersebut.",
+        hero_btn_projects: "Lihat Proyek",
+        hero_btn_contact: "Hubungi Saya",
+        focus_title: "Fokus Utama",
+        focus_1: "Analisis kebutuhan",
+        focus_2: "Perancangan proses bisnis",
+        focus_3: "Perancangan sistem informasi",
+        focus_4: "Dokumentasi sistem",
+
+        about_label: "Tentang Saya",
+        about_title: "Fristaka Putri Prawahyu",
+        about_p1: "Saya lulus pada tahun 2025 dari program D3 Manajemen Informatika di Universitas Logistik dan Bisnis Internasional (ULBI). Saya tertarik pada tahap awal pembangunan sistem informasi: memahami kebutuhan pengguna, memetakan alur proses, lalu menuangkannya ke dalam rancangan yang jelas.",
+        about_p2: "Selama magang di Diskominfo Kabupaten Jombang pada bidang Aplikasi Informatika, saya mengerjakan tahap perencanaan SIAGA, meliputi analisis kebutuhan, perancangan proses bisnis, dan mockup. Setelah itu, saya mengimplementasikan dan menguji SIAGA sebagai tugas akhir.",
+        about_p3: "Saya juga memiliki Sertifikasi Analis Sistem dari LSP ULBI atas nama BNSP.",
+        about_facts_label: "Pendidikan, sertifikasi, dan magang",
+        fact_edu_title: "Pendidikan",
+        fact_edu_text: "D3 Manajemen Informatika, ULBI (lulus 2025)",
+        fact_cert_title: "Sertifikasi",
+        fact_cert_text: "Analis Sistem, LSP ULBI atas nama BNSP",
+        fact_intern_title: "Magang",
+        fact_intern_text: "Diskominfo Kabupaten Jombang, bidang Aplikasi Informatika",
+
+        skills_label: "Keahlian Utama",
+        skills_title: "Yang Saya Bawa dalam Analisis Sistem",
+        skills_intro: "Dasar-dasar yang saya gunakan saat menganalisis dan merancang sistem informasi.",
+        skill_1_title: "Analisis Kebutuhan",
+        skill_1_text: "Mengidentifikasi dan mendokumentasikan apa yang dibutuhkan pengguna dan organisasi dari sebuah sistem.",
+        skill_2_title: "Pemodelan Proses Bisnis",
+        skill_2_text: "Memetakan dan merancang alur proses bisnis agar mudah dipahami.",
+        skill_3_title: "Perancangan Sistem",
+        skill_3_text: "Merencanakan struktur dan fitur sebuah sistem informasi.",
+        skill_4_title: "Dokumentasi Sistem",
+        skill_4_text: "Menulis dokumentasi yang jelas untuk menjelaskan cara kerja sebuah sistem.",
+        skill_5_title: "Dasar Basis Data & SQL",
+        skill_5_text: "Pengetahuan dasar tentang konsep basis data dan SQL.",
+
+        projects_label: "Proyek Pilihan",
+        projects_title: "Karya Terpilih",
+        projects_intro: "SIAGA tampil dua kali karena magang dan tugas akhir mencakup tahap pekerjaan yang berbeda.",
+        img_placeholder: "Tambahkan gambar proyek di sini",
+        p1_alt: "SIAGA magang: perancangan proses bisnis",
+        p1_badge: "Magang",
+        p1_text: "Sistem informasi untuk agenda kegiatan pemerintah. Selama magang di Diskominfo Kabupaten Jombang, saya mengerjakan analisis kebutuhan, perancangan proses bisnis, dan mockup.",
+        p1_note: "Tahap magang berfokus pada perencanaan, bukan implementasi aplikasi secara lengkap.",
+        p2_alt: "SIAGA tugas akhir: aplikasi",
+        p2_badge: "Tugas Akhir",
+        p2_text: "Sistem yang sama, dikembangkan lebih jauh sebagai tugas akhir: saya mengimplementasikan aplikasi dan melakukan pengujian sistem.",
+        p3_alt: "SIPSTOBA: sistem informasi persediaan",
+        p3_badge: "Sistem Persediaan",
+        p3_text: "Sistem Informasi Persediaan Stok Barang pada Toko Nabila, dengan transaksi barang masuk dan barang keluar serta laporan stok.",
+        tag_req: "Analisis Kebutuhan",
+        tag_bp: "Perancangan Proses Bisnis",
+        tag_mockup: "Mockup",
+        tag_impl: "Implementasi",
+        tag_test: "Pengujian Sistem",
+        tag_final: "Tugas Akhir",
+        tag_in: "Barang Masuk",
+        tag_out: "Barang Keluar",
+        tag_report: "Laporan Stok",
+
+        cert_label: "Sertifikasi",
+        cert_title: "Sertifikasi Profesi",
+        cert_name: "Sertifikasi Analis Sistem",
+        cert_issuer: "LSP ULBI atas nama BNSP",
+        cert_text: "Sertifikasi kompetensi yang berkaitan dengan pekerjaan analis sistem.",
+
+        contact_label: "Kontak",
+        contact_title: "Mari Terhubung",
+        contact_text: "Saya senang bisa mendengar kabar dari Anda. Silakan hubungi saya melalui tautan di bawah ini.",
+        footer_back: "Kembali ke Beranda"
+      }
+    };
+
+    /* ---------- Switch language ---------- */
+    function setLanguage(lang) {
+      var dict = translations[lang];
+      if (!dict) { return; }
+
+      document.documentElement.lang = lang;
+      document.title = dict.page_title;
+
+      // Normal text
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (dict[key]) { el.textContent = dict[key]; }
+      });
+      // aria-label (for screen readers)
+      document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-aria');
+        if (dict[key]) { el.setAttribute('aria-label', dict[key]); }
+      });
+      // Image descriptions (alt text)
+      document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-alt');
+        if (dict[key]) { el.setAttribute('alt', dict[key]); }
+      });
+      // Highlight the active language button
+      document.querySelectorAll('.lang-btn').forEach(function (btn) {
+        btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
+      });
+
+      // Remember the choice (ignored if the browser blocks storage)
+      try { localStorage.setItem('portfolio-lang', lang); } catch (e) {}
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        setLanguage(btn.getAttribute('data-lang'));
+      });
+    });
+
+    // Use the saved language if there is one, otherwise English
+    var savedLang = 'en';
+    try { savedLang = localStorage.getItem('portfolio-lang') || 'en'; } catch (e) {}
+    setLanguage(savedLang === 'id' ? 'id' : 'en');
+
+    /* ---------- Mobile menu ---------- */
+    var menuToggle = document.getElementById('menuToggle');
+    var siteNav = document.getElementById('siteNav');
+
+    menuToggle.addEventListener('click', function () {
+      var isOpen = siteNav.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Close the menu after choosing a link
+    siteNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        siteNav.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* ---------- Project images: hide broken images so the placeholder shows ---------- */
+    document.querySelectorAll('.project-media img').forEach(function (img) {
+      function hideIfBroken() { img.style.display = 'none'; }
+      img.addEventListener('error', hideIfBroken);
+      // In case the image already failed before this script ran
+      if (img.complete && img.naturalWidth === 0) { hideIfBroken(); }
+    });
+
+    /* ---------- Fade-in when scrolling ---------- */
+    var revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(function (item) { observer.observe(item); });
+    } else {
+      revealItems.forEach(function (item) { item.classList.add('is-visible'); });
+    }
+  </script>
+</body>
+</html>
