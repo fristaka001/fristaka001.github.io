@@ -1,0 +1,963 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1f2f4a">
+
+  <title>Fristaka Putri Prawahyu | Portfolio</title>
+  <meta name="description" content="Portfolio of Fristaka Putri Prawahyu, Informatics Management graduate interested in system analysis, information systems, data, and design.">
+
+  <style>
+    :root {
+      --navy: #1f2f4a;
+      --navy-soft: #3a4b68;
+      --sage: #8fa58e;
+      --sage-dark: #5f7a62;
+      --sage-light: #e6ede4;
+      --offwhite: #f7f5f0;
+      --white: #ffffff;
+      --text: #2b3445;
+      --muted: #6b7384;
+      --border: #e3e0d8;
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system,
+        Roboto, Helvetica, Arial, sans-serif;
+      background: var(--offwhite);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--sage-dark);
+      outline-offset: 3px;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1080px, calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    h1, h2, h3 {
+      color: var(--navy);
+      line-height: 1.25;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      margin-bottom: .8rem;
+    }
+
+    .section-label {
+      font-size: .8rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--sage-dark);
+      font-weight: 700;
+      margin-bottom: .6rem;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      z-index: 200;
+      background: var(--navy);
+      color: white;
+      padding: .7rem 1rem;
+    }
+
+    .skip-link:focus {
+      left: 1rem;
+    }
+
+    /* Navigation */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 245, 240, .96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2rem;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      flex-shrink: 0;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--navy);
+    }
+
+    .logo span {
+      color: var(--sage-dark);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.4rem;
+      list-style: none;
+      font-size: .93rem;
+    }
+
+    .nav-links a {
+      color: var(--navy-soft);
+      border-bottom: 2px solid transparent;
+      padding: .3rem 0;
+      transition: border-color .2s, color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--navy);
+      border-color: var(--sage);
+    }
+
+    .language-switch {
+      display: flex;
+      align-items: center;
+      gap: .2rem;
+      padding: .25rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: white;
+      flex-shrink: 0;
+    }
+
+    .lang-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: .35rem .6rem;
+      cursor: pointer;
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+    .lang-btn[aria-pressed="true"] {
+      background: var(--navy);
+      color: white;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 6rem 0 5rem;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 span {
+      color: var(--sage-dark);
+    }
+
+    .hero p:not(.section-label) {
+      color: var(--muted);
+      max-width: 570px;
+      margin-bottom: 1rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .8rem;
+      margin-top: 1.8rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .75rem 1.5rem;
+      border-radius: 999px;
+      font-size: .93rem;
+      font-weight: 700;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      transition: transform .2s, background .2s, color .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--navy-soft);
+    }
+
+    .btn-outline {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+
+    .btn-outline:hover {
+      background: var(--navy);
+      color: white;
+    }
+
+    .hero-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      box-shadow: 0 10px 30px rgba(31, 47, 74, .04);
+    }
+
+    .hero-card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-card ul {
+      list-style: none;
+    }
+
+    .hero-card li {
+      padding: .8rem 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .hero-card li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .hero-card strong {
+      display: block;
+      color: var(--navy);
+      font-weight: 700;
+      margin-bottom: .15rem;
+    }
+
+    /* Category cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.3rem;
+    }
+
+    .card {
+      display: block;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.7rem;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 30px rgba(31, 47, 74, .09);
+      border-color: var(--sage);
+    }
+
+    .card-number {
+      display: inline-block;
+      color: var(--sage-dark);
+      background: var(--sage-light);
+      font-size: .8rem;
+      font-weight: 800;
+      padding: .2rem .7rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: .6rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .92rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-link {
+      color: var(--sage-dark);
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    /* Featured projects */
+    .featured {
+      background: white;
+      border-block: 1px solid var(--border);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project {
+      background: var(--offwhite);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+
+    .project h3 {
+      font-size: 1.5rem;
+      margin-bottom: .3rem;
+    }
+
+    .project .subtitle {
+      color: var(--sage-dark);
+      font-weight: 700;
+      font-size: .9rem;
+      margin-bottom: 1rem;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: .94rem;
+      margin-bottom: 1rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      list-style: none;
+    }
+
+    .tags li {
+      font-size: .8rem;
+      padding: .25rem .75rem;
+      border-radius: 999px;
+      background: var(--sage-light);
+      color: var(--navy-soft);
+    }
+
+    .project .note {
+      font-size: .85rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0;
+      font-style: italic;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3rem;
+    }
+
+    .about-grid p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .timeline {
+      list-style: none;
+    }
+
+    .timeline li {
+      background: white;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--sage);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      font-size: .93rem;
+      color: var(--muted);
+    }
+
+    .timeline strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: .2rem;
+    }
+
+    /* Skills */
+    .skills {
+      background: var(--navy);
+    }
+
+    .skills .section-label {
+      color: var(--sage);
+    }
+
+    .skills h2 {
+      color: white;
+    }
+
+    .skills .section-intro {
+      color: #c3cad8;
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .skill-box {
+      border: 1px solid rgba(255, 255, 255, .17);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+
+    .skill-box h3 {
+      color: white;
+      font-size: 1.05rem;
+      margin-bottom: .5rem;
+    }
+
+    .skill-box p {
+      color: #c3cad8;
+      font-size: .9rem;
+    }
+
+    /* Contact */
+    .contact-box {
+      background: var(--sage-light);
+      border-radius: var(--radius);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .contact-box p:not(.section-label) {
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 1.8rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .8rem;
+      justify-content: center;
+    }
+
+    .site-footer {
+      padding: 2rem 0;
+      text-align: center;
+      font-size: .88rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards,
+      .skill-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 650px) {
+      section {
+        padding: 3.5rem 0;
+      }
+
+      .hero {
+        padding: 3.5rem 0;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+      }
+
+      .nav-right {
+        width: 100%;
+        justify-content: space-between;
+        gap: .6rem;
+      }
+
+      .nav-links {
+        gap: .9rem;
+        font-size: .85rem;
+      }
+
+      .cards,
+      .skill-grid,
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card,
+      .project {
+        padding: 1.4rem;
+      }
+
+      .contact-box {
+        padding: 2rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .nav-links {
+        gap: .6rem;
+        font-size: .8rem;
+      }
+
+      .lang-btn {
+        padding: .3rem .45rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main"
+     data-en="Skip to main content"
+     data-id="Langsung ke konten utama">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="#home" aria-label="Fristaka Portfolio">
+        Fristaka<span>.</span>
+      </a>
+
+      <div class="nav-right">
+        <nav aria-label="Main navigation">
+          <ul class="nav-links">
+            <li><a href="#home" data-en="Home" data-id="Beranda">Home</a></li>
+            <li><a href="#portfolio" data-en="Portfolio" data-id="Portofolio">Portfolio</a></li>
+            <li><a href="#about" data-en="About" data-id="Tentang">About</a></li>
+            <li><a href="#contact" data-en="Contact" data-id="Kontak">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="language-switch" aria-label="Choose language">
+          <button class="lang-btn" type="button" data-lang="en"
+                  aria-pressed="true" aria-label="Use English">EN</button>
+          <button class="lang-btn" type="button" data-lang="id"
+                  aria-pressed="false" aria-label="Gunakan Bahasa Indonesia">ID</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div>
+          <p class="section-label" data-en="Personal Portfolio" data-id="Portofolio Pribadi">Personal Portfolio</p>
+
+          <h1>
+            <span data-en="Hi, I'm " data-id="Halo, saya ">Hi, I'm </span><span>Fristaka Putri Prawahyu</span>
+          </h1>
+
+          <p data-en="I am a D3 Informatics Management graduate interested in information systems, system analysis, IT administration, data, and design."
+             data-id="Saya lulusan D3 Manajemen Informatika yang memiliki ketertarikan pada sistem informasi, analisis sistem, administrasi TI, pengolahan data, dan desain.">
+            I am a D3 Informatics Management graduate interested in information systems, system analysis, IT administration, data, and design.
+          </p>
+
+          <p data-en="This website brings together my academic projects, skills, and creative work. Choose a category below to explore."
+             data-id="Website ini merangkum proyek akademik, keterampilan, dan karya kreatif saya. Pilih kategori di bawah untuk melihat lebih lanjut.">
+            This website brings together my academic projects, skills, and creative work. Choose a category below to explore.
+          </p>
+
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#portfolio"
+               data-en="Explore Portfolio" data-id="Jelajahi Portofolio">Explore Portfolio</a>
+            <a class="btn btn-outline" href="#contact"
+               data-en="Get in Touch" data-id="Hubungi Saya">Get in Touch</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Quick facts">
+          <h2 data-en="Quick Facts" data-id="Profil Singkat">Quick Facts</h2>
+          <ul>
+            <li>
+              <strong data-en="D3 Informatics Management" data-id="D3 Manajemen Informatika">D3 Informatics Management</strong>
+              <span data-en="Universitas Logistik dan Bisnis Internasional (ULBI)"
+                    data-id="Universitas Logistik dan Bisnis Internasional (ULBI)">Universitas Logistik dan Bisnis Internasional (ULBI)</span>
+            </li>
+            <li>
+              <strong data-en="GPA 3.71" data-id="IPK 3,71">GPA 3.71</strong>
+              <span data-en="Graduated in 2025" data-id="Lulus tahun 2025">Graduated in 2025</span>
+            </li>
+            <li>
+              <strong data-en="System Analyst Certification" data-id="Sertifikasi Analis Sistem">System Analyst Certification</strong>
+              <span data-en="LSP ULBI / BNSP" data-id="LSP ULBI / BNSP">LSP ULBI / BNSP</span>
+            </li>
+            <li>
+              <strong data-en="Internship" data-id="Pengalaman Magang">Internship</strong>
+              <span data-en="Diskominfo Kabupaten Jombang, Aplikasi Informatika division"
+                    data-id="Diskominfo Kabupaten Jombang, bidang Aplikasi Informatika">Diskominfo Kabupaten Jombang, Aplikasi Informatika division</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Portfolio categories -->
+    <section id="portfolio">
+      <div class="container">
+        <p class="section-label" data-en="Portfolio Categories" data-id="Kategori Portofolio">Portfolio Categories</p>
+        <h2 data-en="Explore My Work" data-id="Jelajahi Karya Saya">Explore My Work</h2>
+        <p class="section-intro"
+           data-en="Explore different areas of my work, from information systems to creative projects."
+           data-id="Jelajahi berbagai bidang karya saya, mulai dari sistem informasi hingga proyek kreatif.">
+          Explore different areas of my work, from information systems to creative projects.
+        </p>
+
+        <div class="cards">
+          <a class="card" href="system-analyst/index.html">
+            <span class="card-number">01</span>
+            <h3 data-en="System Analyst" data-id="Analis Sistem">System Analyst</h3>
+            <p data-en="Requirements analysis, business processes, and system documentation."
+               data-id="Analisis kebutuhan, proses bisnis, dan dokumentasi sistem.">Requirements analysis, business processes, and system documentation.</p>
+            <span class="card-link" data-en="View category →" data-id="Lihat kategori →">View category →</span>
+          </a>
+
+          <a class="card" href="application/index.html">
+            <span class="card-number">02</span>
+            <h3 data-en="Application Development" data-id="Pengembangan Aplikasi">Application Development</h3>
+            <p data-en="Information systems and applications developed through academic projects."
+               data-id="Sistem informasi dan aplikasi yang dikembangkan melalui proyek akademik.">Information systems and applications developed through academic projects.</p>
+            <span class="card-link" data-en="View category →" data-id="Lihat kategori →">View category →</span>
+          </a>
+
+          <a class="card" href="ui-ux/index.html">
+            <span class="card-number">03</span>
+            <h3>UI/UX Design</h3>
+            <p data-en="User interface and user experience design."
+               data-id="Perancangan antarmuka dan pengalaman pengguna.">User interface and user experience design.</p>
+            <span class="card-link" data-en="View category →" data-id="Lihat kategori →">View category →</span>
+          </a>
+
+          <a class="card" href="excel-data/index.html">
+            <span class="card-number">04</span>
+            <h3>Excel &amp; Data</h3>
+            <p data-en="Spreadsheet work, data processing, and reporting."
+               data-id="Pekerjaan spreadsheet, pengolahan data, dan pelaporan.">Spreadsheet work, data processing, and reporting.</p>
+            <span class="card-link" data-en="View category →" data-id="Lihat kategori →">View category →</span>
+          </a>
+
+          <a class="card" href="canva/index.html">
+            <span class="card-number">05</span>
+            <h3>Canva Design</h3>
+            <p data-en="Visual design and creative materials made with Canva."
+               data-id="Desain visual dan materi kreatif yang dibuat menggunakan Canva.">Visual design and creative materials made with Canva.</p>
+            <span class="card-link" data-en="View category →" data-id="Lihat kategori →">View category →</span>
+          </a>
+
+          <a class="card" href="video/index.html">
+            <span class="card-number">06</span>
+            <h3 data-en="Video Editing" data-id="Penyuntingan Video">Video Editing</h3>
+            <p data-en="Video editing and multimedia projects."
+               data-id="Penyuntingan video dan proyek multimedia.">Video editing and multimedia projects.</p>
+            <span class="card-link" data-en="View category →" data-id="Lihat kategori →">View category →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured projects -->
+    <section class="featured" id="featured">
+      <div class="container">
+        <p class="section-label" data-en="Featured Projects" data-id="Proyek Unggulan">Featured Projects</p>
+        <h2 data-en="Selected Academic Work" data-id="Pilihan Proyek Akademik">Selected Academic Work</h2>
+        <p class="section-intro"
+           data-en="A closer look at two information system projects."
+           data-id="Sekilas tentang dua proyek sistem informasi.">
+          A closer look at two information system projects.
+        </p>
+
+        <div class="projects">
+          <article class="project">
+            <h3>SIAGA</h3>
+            <p class="subtitle"
+               data-en="Government Activity Agenda Information System"
+               data-id="Sistem Informasi Agenda Kegiatan Dinas">
+              Government Activity Agenda Information System
+            </p>
+            <p data-en="An information system concept for managing government activity agendas. My work included requirements analysis and business process design. The full implementation was my final academic project."
+               data-id="Sistem informasi untuk pengelolaan agenda kegiatan dinas. Pekerjaan saya mencakup analisis kebutuhan dan perancangan proses bisnis. Implementasi lengkapnya merupakan bagian dari tugas akhir akademik saya.">
+              An information system concept for managing government activity agendas. My work included requirements analysis and business process design. The full implementation was my final academic project.
+            </p>
+            <ul class="tags" aria-label="SIAGA focus areas">
+              <li data-en="Requirements Analysis" data-id="Analisis Kebutuhan">Requirements Analysis</li>
+              <li data-en="Business Process Design" data-id="Perancangan Proses Bisnis">Business Process Design</li>
+              <li data-en="Final Academic Project" data-id="Proyek Tugas Akhir">Final Academic Project</li>
+            </ul>
+            <p class="note" data-en="Detailed case study coming soon."
+               data-id="Studi kasus lengkap akan ditambahkan.">Detailed case study coming soon.</p>
+          </article>
+
+          <article class="project">
+            <h3>SIPSTOBA</h3>
+            <p class="subtitle"
+               data-en="Inventory Information System for Toko Nabila"
+               data-id="Sistem Informasi Persediaan Stok Barang pada Toko Nabila">
+              Inventory Information System for Toko Nabila
+            </p>
+            <p data-en="An inventory information system featuring incoming and outgoing stock transactions and inventory reports."
+               data-id="Sistem informasi persediaan yang mencakup transaksi barang masuk, barang keluar, dan laporan stok.">
+              An inventory information system featuring incoming and outgoing stock transactions and inventory reports.
+            </p>
+            <ul class="tags" aria-label="SIPSTOBA features">
+              <li data-en="Incoming Stock" data-id="Barang Masuk">Incoming Stock</li>
+              <li data-en="Outgoing Stock" data-id="Barang Keluar">Outgoing Stock</li>
+              <li data-en="Inventory Reports" data-id="Laporan Stok">Inventory Reports</li>
+            </ul>
+            <p class="note" data-en="Detailed case study coming soon."
+               data-id="Studi kasus lengkap akan ditambahkan.">Detailed case study coming soon.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container about-grid">
+        <div>
+          <p class="section-label" data-en="About Me" data-id="Tentang Saya">About Me</p>
+          <h2 data-en="A Little About Me" data-id="Sekilas Tentang Saya">A Little About Me</h2>
+          <p data-en="I graduated in 2025 from the D3 Informatics Management program at Universitas Logistik dan Bisnis Internasional (ULBI), with a GPA of 3.71."
+             data-id="Saya lulus pada tahun 2025 dari program D3 Manajemen Informatika di Universitas Logistik dan Bisnis Internasional (ULBI), dengan IPK 3,71.">
+            I graduated in 2025 from the D3 Informatics Management program at Universitas Logistik dan Bisnis Internasional (ULBI), with a GPA of 3.71.
+          </p>
+          <p data-en="I am interested in how information systems support everyday work, from analyzing requirements and documenting processes to IT administration, data processing, and interface design."
+             data-id="Saya tertarik pada bagaimana sistem informasi mendukung pekerjaan sehari-hari, mulai dari analisis kebutuhan dan dokumentasi proses hingga administrasi TI, pengolahan data, dan desain antarmuka.">
+            I am interested in how information systems support everyday work, from analyzing requirements and documenting processes to IT administration, data processing, and interface design.
+          </p>
+          <p data-en="During my internship at Diskominfo Kabupaten Jombang, in the Aplikasi Informatika division, I worked on system analysis and administrative data tasks."
+             data-id="Saat magang di Diskominfo Kabupaten Jombang, bidang Aplikasi Informatika, saya mengerjakan analisis sistem dan tugas pengolahan data administrasi.">
+            During my internship at Diskominfo Kabupaten Jombang, in the Aplikasi Informatika division, I worked on system analysis and administrative data tasks.
+          </p>
+        </div>
+
+        <ul class="timeline" aria-label="Education, certification, and internship">
+          <li>
+            <strong data-en="Education" data-id="Pendidikan">Education</strong>
+            <span data-en="D3 Informatics Management, ULBI (2025) · GPA 3.71"
+                  data-id="D3 Manajemen Informatika, ULBI (2025) · IPK 3,71">D3 Informatics Management, ULBI (2025) · GPA 3.71</span>
+          </li>
+          <li>
+            <strong data-en="Certification" data-id="Sertifikasi">Certification</strong>
+            <span data-en="System Analyst — LSP ULBI / BNSP"
+                  data-id="Analis Sistem — LSP ULBI / BNSP">System Analyst — LSP ULBI / BNSP</span>
+          </li>
+          <li>
+            <strong data-en="Internship" data-id="Pengalaman Magang">Internship</strong>
+            <span data-en="Diskominfo Kabupaten Jombang — Aplikasi Informatika"
+                  data-id="Diskominfo Kabupaten Jombang — Aplikasi Informatika">Diskominfo Kabupaten Jombang — Aplikasi Informatika</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="skills" id="skills">
+      <div class="container">
+        <p class="section-label" data-en="Skills & Interests" data-id="Keterampilan & Minat">Skills &amp; Interests</p>
+        <h2 data-en="Areas I Explore" data-id="Bidang yang Saya Tekuni">Areas I Explore</h2>
+        <p class="section-intro"
+           data-en="An overview of the areas represented in my portfolio."
+           data-id="Ringkasan bidang yang ditampilkan dalam portofolio saya.">
+          An overview of the areas represented in my portfolio.
+        </p>
+
+        <div class="skill-grid">
+          <div class="skill-box">
+            <h3 data-en="System Analysis" data-id="Analisis Sistem">System Analysis</h3>
+            <p data-en="Requirements analysis and business process design."
+               data-id="Analisis kebutuhan dan perancangan proses bisnis.">Requirements analysis and business process design.</p>
+          </div>
+          <div class="skill-box">
+            <h3 data-en="Information Systems" data-id="Sistem Informasi">Information Systems</h3>
+            <p data-en="Academic information system projects using PHP, CodeIgniter, and MySQL."
+               data-id="Proyek sistem informasi akademik menggunakan PHP, CodeIgniter, dan MySQL.">Academic information system projects using PHP, CodeIgniter, and MySQL.</p>
+          </div>
+          <div class="skill-box">
+            <h3 data-en="IT Administration" data-id="Administrasi TI">IT Administration</h3>
+            <p data-en="Administrative support and information processing."
+               data-id="Dukungan administrasi dan pengolahan informasi.">Administrative support and information processing.</p>
+          </div>
+          <div class="skill-box">
+            <h3>Excel &amp; Data</h3>
+            <p data-en="Spreadsheet work, data entry, and reporting."
+               data-id="Pekerjaan spreadsheet, input data, dan pelaporan.">Spreadsheet work, data entry, and reporting.</p>
+          </div>
+          <div class="skill-box">
+            <h3>UI/UX Design</h3>
+            <p data-en="Interface design and user experience fundamentals."
+               data-id="Dasar-dasar desain antarmuka dan pengalaman pengguna.">Interface design and user experience fundamentals.</p>
+          </div>
+          <div class="skill-box">
+            <h3 data-en="Creative Work" data-id="Karya Kreatif">Creative Work</h3>
+            <p data-en="Visual design and video editing."
+               data-id="Desain visual dan penyuntingan video.">Visual design and video editing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <p class="section-label" data-en="Contact" data-id="Kontak">Contact</p>
+          <h2 data-en="Let's Connect" data-id="Mari Terhubung">Let's Connect</h2>
+          <p data-en="Thank you for visiting my portfolio. Feel free to connect with me through the links below."
+             data-id="Terima kasih sudah mengunjungi portofolio saya. Silakan hubungi atau terhubung dengan saya melalui tautan berikut.">
+            Thank you for visiting my portfolio. Feel free to connect with me through the links below.
+          </p>
+
+          <div class="contact-links">
+            <!-- Replace this placeholder with your actual email -->
+            <a class="btn btn-primary" href="mailto:your-email@example.com"
+               data-en="Email Me" data-id="Kirim Email">Email Me</a>
+
+            <!-- Replace this placeholder with your actual LinkedIn profile -->
+            <a class="btn btn-outline"
+               href="https://www.linkedin.com/in/your-linkedin-profile"
+               target="_blank" rel="noopener noreferrer"
+               data-en="LinkedIn" data-id="LinkedIn">LinkedIn</a>
+
+            <a class="btn btn-outline"
+               href="https://github.com/fristaka001"
+               target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        &copy; <span id="year">2026</span> Fristaka Putri Prawahyu.
+        <span data-en="All rights reserved." data-id="Hak cipta dilindungi.">All rights reserved.</span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const languageButtons = document.querySelectorAll("[data-lang]");
+    const translatableElements = document.querySelectorAll("[data-en][data-id]");
+
+    function setLanguage(language) {
+      const selectedLanguage = language === "id" ? "id" : "en";
+
+      translatableElements.forEach((element) => {
+        element.textContent = element.dataset[selectedLanguage];
+      });
+
+      document.documentElement.lang = selectedLanguage;
+
+      document.title = selectedLanguage === "id"
+        ? "Fristaka Putri Prawahyu | Portofolio"
+        : "Fristaka Putri Prawahyu | Portfolio";
+
+      languageButtons.forEach((button) => {
+        const isActive = button.dataset.lang === selectedLanguage;
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+
+      try {
+        localStorage.setItem("portfolio-language", selectedLanguage);
+      } catch (error) {
+        // Language switching still works if browser storage is unavailable.
+      }
+    }
+
+    languageButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setLanguage(button.dataset.lang);
+      });
+    });
+
+    let savedLanguage = "en";
+
+    try {
+      const storedLanguage = localStorage.getItem("portfolio-language");
+      if (storedLanguage === "en" || storedLanguage === "id") {
+        savedLanguage = storedLanguage;
+      }
+    } catch (error) {
+      // Use English by default if browser storage is unavailable.
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    setLanguage(savedLanguage);
+  </script>
+</body>
+</html>
