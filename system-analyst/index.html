@@ -661,271 +661,62 @@ a.project-card:focus-visible {
   <!-- ===================== FOOTER ===================== -->
 <div id="footer-placeholder"></div>
 
-  <script>
-    /* =========================================================
-       TEXT TRANSLATIONS (EN / ID)
-       To change a text: find its key (for example "hero_intro")
-       and edit BOTH the "en" and the "id" versions.
-       ========================================================= */
-    var translations = {
-      en: {
-        page_title: "System Analyst | Fristaka Putri Prawahyu",
-        skip: "Skip to main content",
-        lang_label: "Language",
-        menu_label: "Open menu",
-        nav_label: "Page navigation",
-        nav_back: "\u2190 Homepage",
-        nav_about: "About",
-        nav_skills: "Skills",
-        nav_projects: "Projects",
-        nav_cert: "Certification",
-        nav_contact: "Contact",
+<script>
+  // Load shared header and footer
+  Promise.all([
+    fetch('../components/header.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Header gagal dimuat');
+        return response.text();
+      }),
+    fetch('../components/footer.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Footer gagal dimuat');
+        return response.text();
+      })
+  ])
+  .then(([header, footer]) => {
+    document.getElementById('header-placeholder').innerHTML = header;
+    document.getElementById('footer-placeholder').innerHTML = footer;
 
-        hero_label: "Portfolio \u00B7 System Analyst",
-        hero_title: "Understanding Problems. Designing Better Systems.",
-        hero_intro: "I am a D3 Informatics Management graduate from ULBI who is interested in requirements analysis, business process design, information system design, and system documentation. This page presents the projects and certification related to that work.",
-        hero_btn_projects: "View Projects",
-        hero_btn_contact: "Contact Me",
-        focus_title: "Focus Areas",
-        focus_1: "Requirements analysis",
-        focus_2: "Business process design",
-        focus_3: "Information system design",
-        focus_4: "System documentation",
+    // Jalankan fungsi setelah header tersedia
+    initializePage();
+  })
+  .catch(error => console.error(error));
 
-        about_label: "About Me",
-        about_title: "Fristaka Putri Prawahyu",
-        about_p1: "I graduated in 2025 from the D3 Informatics Management program at Universitas Logistik dan Bisnis Internasional (ULBI). I am drawn to the early stages of building an information system: understanding what users need, mapping how a process works, and turning that into a clear design.",
-        about_p2: "During my internship at Diskominfo Kabupaten Jombang in the Aplikasi Informatika division, I worked on the planning stage of SIAGA, including requirements analysis, business process design, and mockups. I later implemented and tested SIAGA as my final academic project.",
-        about_p3: "I also hold a System Analyst certification from LSP ULBI on behalf of BNSP.",
-        about_facts_label: "Education, certification and internship",
-        fact_edu_title: "Education",
-        fact_edu_text: "D3 Manajemen Informatika, ULBI (graduated 2025)",
-        fact_cert_title: "Certification",
-        fact_cert_text: "System Analyst, LSP ULBI on behalf of BNSP",
-        fact_intern_title: "Internship",
-        fact_intern_text: "Diskominfo Kabupaten Jombang, Aplikasi Informatika division",
-
-        skills_label: "Core Skills",
-        skills_title: "What I Bring to System Analysis",
-        skills_intro: "The foundations I use when analyzing and designing information systems.",
-        skill_1_title: "Requirements Analysis",
-        skill_1_text: "Identifying and documenting what users and organizations need from a system.",
-        skill_2_title: "Business Process Modeling",
-        skill_2_text: "Mapping and designing business process flows so they are easy to understand.",
-        skill_3_title: "System Design",
-        skill_3_text: "Planning the structure and features of an information system.",
-        skill_4_title: "System Documentation",
-        skill_4_text: "Writing clear documentation that explains how a system is meant to work.",
-        skill_5_title: "Basic Database & SQL",
-        skill_5_text: "Foundational knowledge of database concepts and SQL.",
-
-        projects_label: "Featured Projects",
-        projects_title: "Selected Work",
-        projects_intro: "SIAGA appears twice because the internship and final project covered different stages of the work.",
-        img_placeholder: "Add project image here",
-        p1_alt: "SIAGA internship: business process design",
-        p1_badge: "Internship",
-        p1_text: "An information system for government activity agendas. During my internship at Diskominfo Kabupaten Jombang, I worked on requirements analysis, business process design, and mockups.",
-        p1_note: "The internship stage focused on planning, not on a complete application implementation.",
-        p2_alt: "SIAGA final project: application",
-        p2_badge: "Final Project",
-        p2_text: "The same system, taken further as my final academic project: I implemented the application and carried out system testing.",
-        p3_alt: "SIPSTOBA: inventory information system",
-        p3_badge: "Inventory System",
-        p3_text: "Sistem Informasi Persediaan Stok Barang (inventory information system) for Toko Nabila, with incoming and outgoing stock transactions and stock reports.",
-        tag_req: "Requirements Analysis",
-        tag_bp: "Business Process Design",
-        tag_mockup: "Mockup",
-        tag_impl: "Implementation",
-        tag_test: "System Testing",
-        tag_final: "Final Project",
-        tag_in: "Incoming Stock",
-        tag_out: "Outgoing Stock",
-        tag_report: "Stock Reports",
-
-        cert_label: "Certification",
-        cert_title: "Professional Certification",
-        cert_name: "System Analyst Certification",
-        cert_issuer: "LSP ULBI on behalf of BNSP",
-        cert_text: "A competency certification related to the work of a system analyst.",
-
-        contact_label: "Contact",
-        contact_title: "Let's Connect",
-        contact_text: "I would be glad to hear from you. Feel free to reach out through the links below.",
-        footer_back: "Back to Homepage"
-      },
-
-      id: {
-        page_title: "System Analyst | Fristaka Putri Prawahyu",
-        skip: "Langsung ke konten utama",
-        lang_label: "Bahasa",
-        menu_label: "Buka menu",
-        nav_label: "Navigasi halaman",
-        nav_back: "\u2190 Beranda",
-        nav_about: "Tentang",
-        nav_skills: "Keahlian",
-        nav_projects: "Proyek",
-        nav_cert: "Sertifikasi",
-        nav_contact: "Kontak",
-
-        hero_label: "Portofolio \u00B7 System Analyst",
-        hero_title: "Memahami Masalah. Merancang Sistem yang Lebih Baik.",
-        hero_intro: "Saya lulusan D3 Manajemen Informatika ULBI yang tertarik pada analisis kebutuhan, perancangan proses bisnis, perancangan sistem informasi, dan dokumentasi sistem. Halaman ini menampilkan proyek dan sertifikasi yang berkaitan dengan bidang tersebut.",
-        hero_btn_projects: "Lihat Proyek",
-        hero_btn_contact: "Hubungi Saya",
-        focus_title: "Fokus Utama",
-        focus_1: "Analisis kebutuhan",
-        focus_2: "Perancangan proses bisnis",
-        focus_3: "Perancangan sistem informasi",
-        focus_4: "Dokumentasi sistem",
-
-        about_label: "Tentang Saya",
-        about_title: "Fristaka Putri Prawahyu",
-        about_p1: "Saya lulus pada tahun 2025 dari program D3 Manajemen Informatika di Universitas Logistik dan Bisnis Internasional (ULBI). Saya tertarik pada tahap awal pembangunan sistem informasi: memahami kebutuhan pengguna, memetakan alur proses, lalu menuangkannya ke dalam rancangan yang jelas.",
-        about_p2: "Selama magang di Diskominfo Kabupaten Jombang pada bidang Aplikasi Informatika, saya mengerjakan tahap perencanaan SIAGA, meliputi analisis kebutuhan, perancangan proses bisnis, dan mockup. Setelah itu, saya mengimplementasikan dan menguji SIAGA sebagai tugas akhir.",
-        about_p3: "Saya juga memiliki Sertifikasi Analis Sistem dari LSP ULBI atas nama BNSP.",
-        about_facts_label: "Pendidikan, sertifikasi, dan magang",
-        fact_edu_title: "Pendidikan",
-        fact_edu_text: "D3 Manajemen Informatika, ULBI (lulus 2025)",
-        fact_cert_title: "Sertifikasi",
-        fact_cert_text: "Analis Sistem, LSP ULBI atas nama BNSP",
-        fact_intern_title: "Magang",
-        fact_intern_text: "Diskominfo Kabupaten Jombang, bidang Aplikasi Informatika",
-
-        skills_label: "Keahlian Utama",
-        skills_title: "Yang Saya Bawa dalam Analisis Sistem",
-        skills_intro: "Dasar-dasar yang saya gunakan saat menganalisis dan merancang sistem informasi.",
-        skill_1_title: "Analisis Kebutuhan",
-        skill_1_text: "Mengidentifikasi dan mendokumentasikan apa yang dibutuhkan pengguna dan organisasi dari sebuah sistem.",
-        skill_2_title: "Pemodelan Proses Bisnis",
-        skill_2_text: "Memetakan dan merancang alur proses bisnis agar mudah dipahami.",
-        skill_3_title: "Perancangan Sistem",
-        skill_3_text: "Merencanakan struktur dan fitur sebuah sistem informasi.",
-        skill_4_title: "Dokumentasi Sistem",
-        skill_4_text: "Menulis dokumentasi yang jelas untuk menjelaskan cara kerja sebuah sistem.",
-        skill_5_title: "Dasar Basis Data & SQL",
-        skill_5_text: "Pengetahuan dasar tentang konsep basis data dan SQL.",
-
-        projects_label: "Proyek Pilihan",
-        projects_title: "Karya Terpilih",
-        projects_intro: "SIAGA tampil dua kali karena magang dan tugas akhir mencakup tahap pekerjaan yang berbeda.",
-        img_placeholder: "Tambahkan gambar proyek di sini",
-        p1_alt: "SIAGA magang: perancangan proses bisnis",
-        p1_badge: "Magang",
-        p1_text: "Sistem informasi untuk agenda kegiatan pemerintah. Selama magang di Diskominfo Kabupaten Jombang, saya mengerjakan analisis kebutuhan, perancangan proses bisnis, dan mockup.",
-        p1_note: "Tahap magang berfokus pada perencanaan, bukan implementasi aplikasi secara lengkap.",
-        p2_alt: "SIAGA tugas akhir: aplikasi",
-        p2_badge: "Tugas Akhir",
-        p2_text: "Sistem yang sama, dikembangkan lebih jauh sebagai tugas akhir: saya mengimplementasikan aplikasi dan melakukan pengujian sistem.",
-        p3_alt: "SIPSTOBA: sistem informasi persediaan",
-        p3_badge: "Sistem Persediaan",
-        p3_text: "Sistem Informasi Persediaan Stok Barang pada Toko Nabila, dengan transaksi barang masuk dan barang keluar serta laporan stok.",
-        tag_req: "Analisis Kebutuhan",
-        tag_bp: "Perancangan Proses Bisnis",
-        tag_mockup: "Mockup",
-        tag_impl: "Implementasi",
-        tag_test: "Pengujian Sistem",
-        tag_final: "Tugas Akhir",
-        tag_in: "Barang Masuk",
-        tag_out: "Barang Keluar",
-        tag_report: "Laporan Stok",
-
-        cert_label: "Sertifikasi",
-        cert_title: "Sertifikasi Profesi",
-        cert_name: "Sertifikasi Analis Sistem",
-        cert_issuer: "LSP ULBI atas nama BNSP",
-        cert_text: "Sertifikasi kompetensi yang berkaitan dengan pekerjaan analis sistem.",
-
-        contact_label: "Kontak",
-        contact_title: "Mari Terhubung",
-        contact_text: "Saya senang bisa mendengar kabar dari Anda. Silakan hubungi saya melalui tautan di bawah ini.",
-        footer_back: "Kembali ke Beranda"
-      }
-    };
-
-    /* ---------- Switch language ---------- */
-    function setLanguage(lang) {
-      var dict = translations[lang];
-      if (!dict) { return; }
-
-      document.documentElement.lang = lang;
-      document.title = dict.page_title;
-
-      // Normal text
-      document.querySelectorAll('[data-i18n]').forEach(function (el) {
-        var key = el.getAttribute('data-i18n');
-        if (dict[key]) { el.textContent = dict[key]; }
-      });
-      // aria-label (for screen readers)
-      document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
-        var key = el.getAttribute('data-i18n-aria');
-        if (dict[key]) { el.setAttribute('aria-label', dict[key]); }
-      });
-      // Image descriptions (alt text)
-      document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
-        var key = el.getAttribute('data-i18n-alt');
-        if (dict[key]) { el.setAttribute('alt', dict[key]); }
-      });
-      // Highlight the active language button
-      document.querySelectorAll('.lang-btn').forEach(function (btn) {
-        btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
-      });
-
-      // Remember the choice (ignored if the browser blocks storage)
-      try { localStorage.setItem('portfolio-lang', lang); } catch (e) {}
-    }
-
+  function initializePage() {
+    // Tombol bahasa
     document.querySelectorAll('.lang-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         setLanguage(btn.getAttribute('data-lang'));
       });
     });
 
-    // Use the saved language if there is one, otherwise English
+    // Atur bahasa yang tersimpan
     var savedLang = 'en';
-    try { savedLang = localStorage.getItem('portfolio-lang') || 'en'; } catch (e) {}
+    try {
+      savedLang = localStorage.getItem('portfolio-lang') || 'en';
+    } catch (e) {}
     setLanguage(savedLang === 'id' ? 'id' : 'en');
 
-    /* ---------- Mobile menu ---------- */
+    // Menu mobile
     var menuToggle = document.getElementById('menuToggle');
     var siteNav = document.getElementById('siteNav');
 
-    menuToggle.addEventListener('click', function () {
-      var isOpen = siteNav.classList.toggle('is-open');
-      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-
-    // Close the menu after choosing a link
-    siteNav.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        siteNav.classList.remove('is-open');
-        menuToggle.setAttribute('aria-expanded', 'false');
+    if (menuToggle && siteNav) {
+      menuToggle.addEventListener('click', function () {
+        var isOpen = siteNav.classList.toggle('is-open');
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       });
-    });
 
-    /* ---------- Project images: hide broken images so the placeholder shows ---------- */
-    document.querySelectorAll('.project-media img').forEach(function (img) {
-      function hideIfBroken() { img.style.display = 'none'; }
-      img.addEventListener('error', hideIfBroken);
-      // In case the image already failed before this script ran
-      if (img.complete && img.naturalWidth === 0) { hideIfBroken(); }
-    });
-
-    /* ---------- Fade-in when scrolling ---------- */
-    var revealItems = document.querySelectorAll('.reveal');
-    if ('IntersectionObserver' in window) {
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
+      siteNav.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          siteNav.classList.remove('is-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
         });
-      }, { threshold: 0.12 });
-      revealItems.forEach(function (item) { observer.observe(item); });
-    } else {
-      revealItems.forEach(function (item) { item.classList.add('is-visible'); });
+      });
     }
-  </script>
+  }
+</script>
 </body>
 </html>
