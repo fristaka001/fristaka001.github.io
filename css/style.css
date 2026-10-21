@@ -101,12 +101,14 @@ h2 {
    ========================================================= */
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   width: 100%;
-  background: var(--navy);
-  border-bottom: 1px solid var(--navy-soft);
+  background-color: #1f2f4a;
+  border-bottom: 1px solid #3a4b68;
   box-shadow: 0 3px 12px rgba(31, 47, 74, 0.15);
 }
 
@@ -982,3 +984,8 @@ a.project-card:focus-visible {
     transform: none;
   }
 }
+
+body {
+  padding-top: 80px;
+}
+  
