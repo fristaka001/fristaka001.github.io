@@ -35,20 +35,6 @@
       if (headerPlaceholder) {
         headerPlaceholder.innerHTML = headerHTML;
 
-        // Make the shared header sticky
-        const header = headerPlaceholder.querySelector(".site-header");
-
-        if (header) {
-          header.style.position = "sticky";
-          header.style.top = "0";
-          header.style.zIndex = "1000";
-          header.style.width = "100%";
-          header.style.backgroundColor = "#1f2f4a";
-          header.style.borderBottom = "1px solid #3a4b68";
-          header.style.boxShadow =
-            "0 3px 12px rgba(31, 47, 74, 0.15)";
-        }
-      }
 
       if (footerPlaceholder) {
         footerPlaceholder.innerHTML = footerHTML;
