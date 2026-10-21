@@ -1,4 +1,3 @@
-
 (() => {
   const currentPath = window.location.pathname;
   const isSystemAnalyst = currentPath.includes("/system-analyst/");
@@ -34,7 +33,7 @@
 
       if (headerPlaceholder) {
         headerPlaceholder.innerHTML = headerHTML;
-
+      }
 
       if (footerPlaceholder) {
         footerPlaceholder.innerHTML = footerHTML;
