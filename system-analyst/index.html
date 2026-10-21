@@ -606,32 +606,8 @@
      data-en="Skip to main content"
      data-id="Langsung ke konten utama">Skip to main content</a>
 
-  <header class="site-header">
-    <div class="container nav">
-      <a class="logo" href="#home" aria-label="Fristaka Portfolio">
-        Fristaka<span>.</span>
-      </a>
-
-      <div class="nav-right">
-        <nav aria-label="Main navigation">
-          <ul class="nav-links">
-            <li><a href="#home" data-en="Home" data-id="Beranda">Home</a></li>
-            <li><a href="#portfolio" data-en="Portfolio" data-id="Portofolio">Portfolio</a></li>
-            <li><a href="#about" data-en="About" data-id="Tentang">About</a></li>
-            <li><a href="#contact" data-en="Contact" data-id="Kontak">Contact</a></li>
-          </ul>
-        </nav>
-
-        <div class="language-switch" aria-label="Choose language">
-          <button class="lang-btn" type="button" data-lang="en"
-                  aria-pressed="true" aria-label="Use English">EN</button>
-          <button class="lang-btn" type="button" data-lang="id"
-                  aria-pressed="false" aria-label="Gunakan Bahasa Indonesia">ID</button>
-        </div>
-      </div>
-    </div>
-  </header>
-
+<div id="header-placeholder"></div>
+  
   <main id="main">
     <!-- Hero -->
     <section class="hero" id="home">
@@ -922,63 +898,86 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>
-        &copy; <span id="year">2026</span> Fristaka Putri Prawahyu.
-        <span data-en="All rights reserved." data-id="Hak cipta dilindungi.">All rights reserved.</span>
-      </p>
-    </div>
-  </footer>
+<div id="footer-placeholder"></div>
 
-  <script>
-    const languageButtons = document.querySelectorAll("[data-lang]");
-    const translatableElements = document.querySelectorAll("[data-en][data-id]");
 
-    function setLanguage(language) {
-      const selectedLanguage = language === "id" ? "id" : "en";
+<script>
+(async function () {
+  const root = document.body.dataset.siteRoot || "./";
 
-      translatableElements.forEach((element) => {
-        element.textContent = element.dataset[selectedLanguage];
-      });
+  async function loadComponent(id, file) {
+    const response = await fetch(root + file);
 
-      document.documentElement.lang = selectedLanguage;
-
-      document.title = selectedLanguage === "id"
-        ? "Fristaka Putri Prawahyu | Portofolio"
-        : "Fristaka Putri Prawahyu | Portfolio";
-
-      languageButtons.forEach((button) => {
-        const isActive = button.dataset.lang === selectedLanguage;
-        button.setAttribute("aria-pressed", String(isActive));
-      });
-
-      try {
-        localStorage.setItem("portfolio-language", selectedLanguage);
-      } catch (error) {
-        // Language switching still works if browser storage is unavailable.
-      }
+    if (!response.ok) {
+      throw new Error("Gagal memuat " + file);
     }
 
-    languageButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        setLanguage(button.dataset.lang);
-      });
+    document.getElementById(id).innerHTML =
+      await response.text();
+  }
+
+  function setLanguage(language) {
+    const lang = language === "id" ? "id" : "en";
+
+    document.querySelectorAll("[data-en][data-id]").forEach(el => {
+      el.textContent = el.dataset[lang];
     });
 
-    let savedLanguage = "en";
+    document.documentElement.lang = lang;
+
+    document.title = lang === "id"
+      ? "Fristaka Putri Prawahyu | Portofolio"
+      : "Fristaka Putri Prawahyu | Portfolio";
+
+    document.querySelectorAll("[data-lang]").forEach(button => {
+      button.setAttribute(
+        "aria-pressed",
+        String(button.dataset.lang === lang)
+      );
+    });
 
     try {
-      const storedLanguage = localStorage.getItem("portfolio-language");
-      if (storedLanguage === "en" || storedLanguage === "id") {
-        savedLanguage = storedLanguage;
-      }
-    } catch (error) {
-      // Use English by default if browser storage is unavailable.
-    }
+      localStorage.setItem("portfolio-language", lang);
+    } catch (error) {}
+  }
 
-    document.getElementById("year").textContent = new Date().getFullYear();
-    setLanguage(savedLanguage);
-  </script>
+  document.addEventListener("click", event => {
+    const button = event.target.closest("[data-lang]");
+
+    if (button) {
+      setLanguage(button.dataset.lang);
+    }
+  });
+
+  try {
+    await Promise.all([
+      loadComponent("header-placeholder", "components/header.html"),
+      loadComponent("footer-placeholder", "components/footer.html")
+    ]);
+
+    const home = root + "index.html";
+
+    document.querySelector(".logo")?.setAttribute("href", home + "#home");
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.href = home + link.getAttribute("href");
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    let language = "en";
+
+    try {
+      const saved = localStorage.getItem("portfolio-language");
+      if (saved === "id" || saved === "en") language = saved;
+    } catch (error) {}
+
+    setLanguage(language);
+  } catch (error) {
+    console.error(error);
+  }
+})();
+</script>
 </body>
 </html>
