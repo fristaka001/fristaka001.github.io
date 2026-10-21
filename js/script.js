@@ -1,72 +1,107 @@
 
 (() => {
-  // Load shared header
-  const headerPlaceholder = document.getElementById("header-placeholder");
+  const currentPath = window.location.pathname;
+  const isSystemAnalyst = currentPath.includes("/system-analyst/");
+  const componentPath = isSystemAnalyst
+    ? "../components/"
+    : "components/";
 
-  if (headerPlaceholder) {
-    fetch("components/header.html")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Gagal memuat header");
-        }
-        return response.text();
-      })
-      .then((html) => {
-        headerPlaceholder.innerHTML = html;
-        updateHeaderLinks();
-      })
-      .catch((error) => {
-        console.error("Header tidak berhasil dimuat:", error);
-      });
+  document.documentElement.classList.add("js");
+
+  // Load shared header and footer
+  async function loadSharedComponents() {
+    try {
+      const [headerResponse, footerResponse] = await Promise.all([
+        fetch(`${componentPath}header.html`),
+        fetch(`${componentPath}footer.html`)
+      ]);
+
+      if (!headerResponse.ok || !footerResponse.ok) {
+        throw new Error("Header atau footer tidak ditemukan.");
+      }
+
+      const [headerHTML, footerHTML] = await Promise.all([
+        headerResponse.text(),
+        footerResponse.text()
+      ]);
+
+      const headerPlaceholder =
+        document.getElementById("header-placeholder");
+      const footerPlaceholder =
+        document.getElementById("footer-placeholder");
+
+      if (headerPlaceholder) {
+        headerPlaceholder.innerHTML = headerHTML;
+      }
+
+      if (footerPlaceholder) {
+        footerPlaceholder.innerHTML = footerHTML;
+      }
+
+      // Footer year
+      const yearElement = document.getElementById("year");
+
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+
+      // Mobile menu
+      setupMobileMenu();
+
+      // Navigation links
+      updateHeaderLinks();
+
+      // Apply saved language
+      const savedLanguage =
+        localStorage.getItem("portfolio-language") || "en";
+
+      translatePage(savedLanguage);
+
+    } catch (error) {
+      console.error("Gagal memuat header/footer:", error);
+    }
   }
 
-  // Load shared footer
-  const footerPlaceholder = document.getElementById("footer-placeholder");
+  // Mobile navigation
+  function setupMobileMenu() {
+    const menuToggle = document.getElementById("menuToggle");
+    const siteNav = document.getElementById("siteNav");
 
-  if (footerPlaceholder) {
-    fetch("components/footer.html")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Gagal memuat footer");
-        }
-        return response.text();
-      })
-      .then((html) => {
-        footerPlaceholder.innerHTML = html;
+    if (!menuToggle || !siteNav) return;
 
-        const yearElement = document.getElementById("year");
+    menuToggle.addEventListener("click", () => {
+      const isOpen = siteNav.classList.toggle("is-open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
 
-        if (yearElement) {
-          yearElement.textContent = new Date().getFullYear();
-        }
-
-        translatePage(
-          localStorage.getItem("portfolio-language") || "en"
-        );
-      })
-      .catch((error) => {
-        console.error("Footer tidak berhasil dimuat:", error);
+    siteNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        siteNav.classList.remove("is-open");
+        menuToggle.setAttribute("aria-expanded", "false");
       });
+    });
   }
 
-  // Update header links
+  // Adjust links on nested pages
   function updateHeaderLinks() {
-    const currentPath = window.location.pathname;
+    if (!isSystemAnalyst) return;
 
     document.querySelectorAll(".nav-links a").forEach((link) => {
       const href = link.getAttribute("href");
 
       if (!href) return;
 
-      // Sesuaikan link navigasi ke bagian di halaman utama
       if (
-        !currentPath.endsWith("/index.html") &&
-        currentPath !== "/" &&
-        !href.startsWith("http") &&
-        !href.startsWith("#")
+        href.startsWith("http") ||
+        href.startsWith("mailto:") ||
+        href.startsWith("#") ||
+        href.startsWith("../") ||
+        href.startsWith("tel:")
       ) {
-        link.setAttribute("href", "../" + href.replace(/^\.?\//, ""));
+        return;
       }
+
+      link.setAttribute("href", "../" + href.replace(/^\.?\//, ""));
     });
   }
 
@@ -85,12 +120,23 @@
 
     document.documentElement.lang = language === "id" ? "id" : "en";
 
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.setAttribute(
+        "aria-pressed",
+        String(button.getAttribute("data-lang") === language)
+      );
+    });
+
     localStorage.setItem("portfolio-language", language);
   }
 
-  // Language switch buttons
+  // Language buttons
   document.addEventListener("click", (event) => {
-    const languageButton = event.target.closest("[data-lang]");
+    const target = event.target;
+
+    if (!(target instanceof Element)) return;
+
+    const languageButton = target.closest("[data-lang]");
 
     if (!languageButton) return;
 
@@ -99,5 +145,34 @@
     if (language === "en" || language === "id") {
       translatePage(language);
     }
+  });
+
+  // Show page content
+  function showPageContent() {
+    document.querySelectorAll(".reveal").forEach((item) => {
+      item.classList.add("is-visible");
+    });
+  }
+
+  // Hide broken project images
+  function handleProjectImages() {
+    document.querySelectorAll(".project-media img").forEach((img) => {
+      const hideIfBroken = () => {
+        img.style.display = "none";
+      };
+
+      img.addEventListener("error", hideIfBroken);
+
+      if (img.complete && img.naturalWidth === 0) {
+        hideIfBroken();
+      }
+    });
+  }
+
+  // Initialize once
+  document.addEventListener("DOMContentLoaded", () => {
+    showPageContent();
+    handleProjectImages();
+    loadSharedComponents();
   });
 })();
