@@ -1,4 +1,8 @@
 
+/* =========================================================
+   1. VARIABLES & GLOBAL STYLES
+   ========================================================= */
+
 :root {
   --navy: #1f2f4a;
   --navy-soft: #3a4b68;
@@ -11,6 +15,9 @@
   --muted: #6b7384;
   --border: #e3e0d8;
   --radius: 18px;
+
+  /* Perkiraan tinggi header desktop */
+  --header-height: 76px;
 }
 
 * {
@@ -21,7 +28,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px;
+  scroll-padding-top: calc(var(--header-height) + 20px);
 }
 
 body {
@@ -36,14 +43,14 @@ a {
   text-decoration: none;
 }
 
+button {
+  font: inherit;
+}
+
 a:focus-visible,
 button:focus-visible {
   outline: 3px solid var(--sage-dark);
   outline-offset: 3px;
-}
-
-button {
-  font: inherit;
 }
 
 .container {
@@ -83,12 +90,12 @@ h2 {
 }
 
 .skip-link {
-  position: absolute;
-  left: -9999px;
+  position: fixed;
   top: 0;
+  left: -9999px;
   z-index: 2000;
   background: var(--navy);
-  color: white;
+  color: var(--white);
   padding: 0.7rem 1rem;
 }
 
@@ -97,16 +104,27 @@ h2 {
 }
 
 /* =========================================================
-   HEADER / NAVIGATION
+   2. HEADER & NAVIGATION
+   Header tetap di atas saat halaman di-scroll
    ========================================================= */
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
   background: var(--navy);
   border-bottom: 1px solid var(--navy-soft);
   box-shadow: 0 3px 12px rgba(31, 47, 74, 0.15);
+}
+
+/*
+  Placeholder menyediakan ruang untuk header fixed.
+  JS perlu memasukkan header ke dalam #header-placeholder.
+*/
+#header-placeholder {
+  height: var(--header-height);
 }
 
 .nav {
@@ -183,11 +201,12 @@ h2 {
 }
 
 /* =========================================================
-   HOMEPAGE HERO
+   3. HERO
+   Digunakan pada homepage dan halaman System Analyst
    ========================================================= */
 
 .hero {
-  padding: 6rem 0 5rem;
+  padding: 5.5rem 0 4.5rem;
 }
 
 .hero-inner {
@@ -198,7 +217,7 @@ h2 {
 }
 
 .hero h1 {
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
   margin-bottom: 1.2rem;
 }
 
@@ -206,7 +225,7 @@ h2 {
   color: var(--sage-dark);
 }
 
-.hero p:not(.section-label) {
+.hero p {
   color: var(--muted);
   max-width: 570px;
   margin-bottom: 1rem;
@@ -219,44 +238,10 @@ h2 {
   margin-top: 1.8rem;
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
-  font-size: 0.93rem;
-  font-weight: 700;
-  border: 1.5px solid transparent;
-  cursor: pointer;
-  transition: transform 0.2s, background 0.2s, color 0.2s;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn-primary {
-  background: var(--navy);
-  color: white;
-}
-
-.btn-primary:hover {
-  background: var(--navy-soft);
-}
-
-.btn-outline {
-  border-color: var(--navy);
-  color: var(--navy);
-}
-
-.btn-outline:hover {
-  background: var(--navy);
-  color: white;
-}
+/* Hero card homepage */
 
 .hero-card {
-  background: white;
+  background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.8rem;
@@ -291,8 +276,89 @@ h2 {
   margin-bottom: 0.15rem;
 }
 
+/* Focus card System Analyst */
+
+.focus-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+}
+
+.focus-card h2 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.focus-card ul {
+  list-style: none;
+}
+
+.focus-card li {
+  position: relative;
+  padding: 0.65rem 0 0.65rem 1.4rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.93rem;
+  color: var(--muted);
+}
+
+.focus-card li:first-child {
+  border-top: none;
+}
+
+.focus-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.15rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sage);
+}
+
 /* =========================================================
-   PORTFOLIO CATEGORY CARDS
+   4. BUTTONS
+   ========================================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-size: 0.93rem;
+  font-weight: 700;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s, color 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--navy-soft);
+}
+
+.btn-outline {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+
+.btn-outline:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* =========================================================
+   5. PORTFOLIO CATEGORY CARDS
    ========================================================= */
 
 .cards {
@@ -303,7 +369,7 @@ h2 {
 
 .card {
   display: block;
-  background: white;
+  background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.7rem;
@@ -345,11 +411,11 @@ h2 {
 }
 
 /* =========================================================
-   FEATURED PROJECTS
+   6. HOMEPAGE FEATURED PROJECTS
    ========================================================= */
 
 .featured {
-  background: white;
+  background: var(--white);
   border-block: 1px solid var(--border);
 }
 
@@ -384,6 +450,11 @@ h2 {
   margin-bottom: 1rem;
 }
 
+/* =========================================================
+   7. TAGS
+   Dipakai pada kartu proyek homepage dan System Analyst
+   ========================================================= */
+
 .tags {
   display: flex;
   flex-wrap: wrap;
@@ -392,7 +463,7 @@ h2 {
 }
 
 .tags li {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
   background: var(--sage-light);
@@ -407,16 +478,17 @@ h2 {
 }
 
 /* =========================================================
-   HOMEPAGE ABOUT
+   8. ABOUT & TIMELINE
    ========================================================= */
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1.3fr 1fr;
   gap: 3rem;
 }
 
-.about-grid p {
+.about-grid p,
+.about-text p {
   color: var(--muted);
   margin-bottom: 1rem;
 }
@@ -426,7 +498,7 @@ h2 {
 }
 
 .timeline li {
-  background: white;
+  background: var(--white);
   border: 1px solid var(--border);
   border-left: 4px solid var(--sage);
   border-radius: 12px;
@@ -440,169 +512,6 @@ h2 {
   display: block;
   color: var(--navy);
   margin-bottom: 0.2rem;
-}
-
-/* =========================================================
-   SKILLS
-   ========================================================= */
-
-.skills {
-  background: var(--navy);
-}
-
-.skills .section-label {
-  color: var(--sage);
-}
-
-.skills h2 {
-  color: white;
-}
-
-.skills .section-intro {
-  color: #c3cad8;
-}
-
-.skill-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.2rem;
-}
-
-.skill-box {
-  border: 1px solid rgba(255, 255, 255, 0.17);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-}
-
-.skill-box h3 {
-  color: white;
-  font-size: 1.05rem;
-  margin-bottom: 0.5rem;
-}
-
-.skill-box p {
-  color: #c3cad8;
-  font-size: 0.9rem;
-}
-
-/* =========================================================
-   CONTACT
-   ========================================================= */
-
-.contact-box {
-  background: var(--sage-light);
-  border-radius: var(--radius);
-  padding: 3rem 2rem;
-  text-align: center;
-}
-
-.contact-box p:not(.section-label) {
-  color: var(--muted);
-  max-width: 500px;
-  margin: 0 auto 1.8rem;
-}
-
-.contact-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  justify-content: center;
-}
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-.site-footer {
-  padding: 2rem 0;
-  text-align: center;
-  font-size: 0.88rem;
-  color: var(--muted);
-}
-
-/* =========================================================
-   SYSTEM ANALYST PAGE
-   ========================================================= */
-
-/* HERO */
-.hero {
-  padding: 5.5rem 0 4.5rem;
-}
-
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 3rem;
-  align-items: center;
-}
-
-.hero h1 {
-  font-size: clamp(2.1rem, 5vw, 3.3rem);
-  margin-bottom: 1.2rem;
-}
-
-.hero p {
-  color: var(--muted);
-  max-width: 560px;
-}
-
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-top: 2rem;
-}
-
-/* FOCUS CARD */
-.focus-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.8rem;
-}
-
-.focus-card h2 {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-
-.focus-card ul {
-  list-style: none;
-}
-
-.focus-card li {
-  padding: 0.65rem 0 0.65rem 1.4rem;
-  border-top: 1px solid var(--border);
-  font-size: 0.93rem;
-  color: var(--muted);
-  position: relative;
-}
-
-.focus-card li:first-child {
-  border-top: none;
-}
-
-.focus-card li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 1.15rem;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--sage);
-}
-
-/* SYSTEM ANALYST ABOUT */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 3rem;
-}
-
-.about-text p {
-  color: var(--muted);
-  margin-bottom: 1rem;
 }
 
 .fact-list {
@@ -625,7 +534,10 @@ h2 {
   color: var(--navy);
 }
 
-/* CORE SKILLS */
+/* =========================================================
+   9. SKILLS
+   ========================================================= */
+
 .skills {
   background: var(--navy);
 }
@@ -649,7 +561,7 @@ h2 {
 }
 
 .skill-box {
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.17);
   border-radius: var(--radius);
   padding: 1.5rem;
   transition: border-color 0.25s, transform 0.25s;
@@ -663,7 +575,7 @@ h2 {
 .skill-box h3 {
   color: var(--white);
   font-size: 1.05rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .skill-box p {
@@ -671,7 +583,10 @@ h2 {
   font-size: 0.9rem;
 }
 
-/* PROJECTS */
+/* =========================================================
+   10. SYSTEM ANALYST PROJECT CARDS
+   ========================================================= */
+
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -778,15 +693,11 @@ a.project-card:focus-visible {
   margin-bottom: 1rem;
 }
 
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  list-style: none;
+.project-body .tags {
   margin-top: auto;
 }
 
-.tags li {
+.project-body .tags li {
   font-size: 0.78rem;
   padding: 0.22rem 0.75rem;
   border-radius: 999px;
@@ -804,7 +715,10 @@ a.project-card:focus-visible {
   color: var(--muted);
 }
 
-/* CERTIFICATION */
+/* =========================================================
+   11. CERTIFICATION
+   ========================================================= */
+
 .certification {
   background: var(--white);
   border-block: 1px solid var(--border);
@@ -851,7 +765,10 @@ a.project-card:focus-visible {
   font-size: 0.93rem;
 }
 
-/* SYSTEM ANALYST CONTACT */
+/* =========================================================
+   12. CONTACT
+   ========================================================= */
+
 .contact-box {
   background: var(--sage-light);
   border-radius: var(--radius);
@@ -861,8 +778,12 @@ a.project-card:focus-visible {
 
 .contact-box p {
   color: var(--muted);
-  max-width: 480px;
+  max-width: 500px;
   margin: 0 auto 1.8rem;
+}
+
+.contact-box p.section-label {
+  margin-bottom: 0.6rem;
 }
 
 .contact-links {
@@ -872,7 +793,21 @@ a.project-card:focus-visible {
   justify-content: center;
 }
 
-/* CONTENT VISIBILITY */
+/* =========================================================
+   13. FOOTER
+   ========================================================= */
+
+.site-footer {
+  padding: 2rem 0;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+/* =========================================================
+   14. CONTENT VISIBILITY
+   ========================================================= */
+
 .js .reveal,
 .js .reveal.is-visible {
   opacity: 1;
@@ -880,10 +815,9 @@ a.project-card:focus-visible {
 }
 
 /* =========================================================
-   RESPONSIVE
+   15. RESPONSIVE: TABLETS
    ========================================================= */
 
-/* Tablets */
 @media (max-width: 900px) {
   .hero-inner,
   .about-grid {
@@ -896,8 +830,15 @@ a.project-card:focus-visible {
   }
 }
 
-/* Phones */
+/* =========================================================
+   16. RESPONSIVE: PHONES
+   ========================================================= */
+
 @media (max-width: 650px) {
+  :root {
+    --header-height: 112px;
+  }
+
   section {
     padding: 3.5rem 0;
   }
@@ -908,8 +849,8 @@ a.project-card:focus-visible {
 
   .nav {
     flex-wrap: wrap;
-    gap: 0.6rem;
-    padding: 0.8rem 0;
+    gap: 0.4rem;
+    padding: 0.55rem 0;
   }
 
   .nav-right {
@@ -948,7 +889,10 @@ a.project-card:focus-visible {
   }
 }
 
-/* Extra small phones */
+/* =========================================================
+   17. RESPONSIVE: EXTRA SMALL PHONES
+   ========================================================= */
+
 @media (max-width: 380px) {
   .container {
     width: calc(100% - 1.5rem);
@@ -964,7 +908,10 @@ a.project-card:focus-visible {
   }
 }
 
-/* ACCESSIBILITY */
+/* =========================================================
+   18. ACCESSIBILITY
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -976,12 +923,9 @@ a.project-card:focus-visible {
     transition: none !important;
   }
 
-  .js .reveal {
+  .js .reveal,
+  .js .reveal.is-visible {
     opacity: 1;
     transform: none;
   }
-}
-
-body {
-  padding-top: 80px;
 }
