@@ -1,14 +1,37 @@
 (() => {
-  const currentPath = window.location.pathname;
-  const isSystemAnalyst = currentPath.includes("/system-analyst/");
+  // ------------------------------------------------------------------
+  // Path helper: hitung kedalaman folder otomatis
+  // ------------------------------------------------------------------
+  // Jika situs di-hosting sebagai project page GitHub Pages
+  // (user.github.io/nama-repo/), isi BASE_DEPTH dengan 1 supaya nama repo
+  // tidak ikut dihitung sebagai folder. Untuk root domain biarkan 0.
+  const BASE_DEPTH = 0;
 
-  const componentPath = isSystemAnalyst
-    ? "../components/"
-    : "components/";
+  const dirs = window.location.pathname.split("/").filter(Boolean);
+  if (dirs.length && dirs[dirs.length - 1].includes(".")) dirs.pop(); // buang index.html
+
+  const depth = Math.max(0, dirs.length - BASE_DEPTH);
+  const prefix = "../".repeat(depth); // "" di root, "../../" di siaga-magang
+  const componentPath = `${prefix}components/`;
 
   document.documentElement.classList.add("js");
 
-  // Load shared header and footer
+  // ------------------------------------------------------------------
+  // Kamus terjemahan untuk halaman yang memakai data-i18n
+  // (isi nanti; key yang belum ada dilewati, teks asli HTML tetap tampil)
+  // ------------------------------------------------------------------
+  const translations = {
+    en: {
+      // hero_label: "Internship readiness",
+    },
+    id: {
+      // hero_label: "Kesiapan magang",
+    }
+  };
+
+  // ------------------------------------------------------------------
+  // Header & footer bersama
+  // ------------------------------------------------------------------
   async function loadSharedComponents() {
     try {
       const [headerResponse, footerResponse] = await Promise.all([
@@ -17,7 +40,9 @@
       ]);
 
       if (!headerResponse.ok || !footerResponse.ok) {
-        throw new Error("Header atau footer tidak ditemukan.");
+        throw new Error(
+          `Header atau footer tidak ditemukan di ${componentPath}`
+        );
       }
 
       const [headerHTML, footerHTML] = await Promise.all([
@@ -25,45 +50,27 @@
         footerResponse.text()
       ]);
 
-      const headerPlaceholder =
-        document.getElementById("header-placeholder");
+      const headerPlaceholder = document.getElementById("header-placeholder");
+      const footerPlaceholder = document.getElementById("footer-placeholder");
 
-      const footerPlaceholder =
-        document.getElementById("footer-placeholder");
+      if (headerPlaceholder) headerPlaceholder.innerHTML = headerHTML;
+      if (footerPlaceholder) footerPlaceholder.innerHTML = footerHTML;
 
-      if (headerPlaceholder) {
-        headerPlaceholder.innerHTML = headerHTML;
-      }
-
-      if (footerPlaceholder) {
-        footerPlaceholder.innerHTML = footerHTML;
-      }
-
-      // Footer year
       const yearElement = document.getElementById("year");
+      if (yearElement) yearElement.textContent = new Date().getFullYear();
 
-      if (yearElement) {
-        yearElement.textContent = new Date().getFullYear();
-      }
-
-      // Navigation links
       updateHeaderLinks();
-
-      // Mobile menu
       setupMobileMenu();
 
-      // Apply saved language
-      const savedLanguage =
-        localStorage.getItem("portfolio-language") || "en";
-
-      translatePage(savedLanguage);
-
+      translatePage(localStorage.getItem("portfolio-language") || "en");
     } catch (error) {
       console.error("Gagal memuat header/footer:", error);
     }
   }
 
-  // Mobile navigation
+  // ------------------------------------------------------------------
+  // Menu mobile
+  // ------------------------------------------------------------------
   function setupMobileMenu() {
     const menuToggle = document.getElementById("menuToggle");
     const siteNav = document.getElementById("siteNav");
@@ -72,7 +79,6 @@
 
     menuToggle.addEventListener("click", () => {
       const isOpen = siteNav.classList.toggle("is-open");
-
       menuToggle.setAttribute("aria-expanded", String(isOpen));
     });
 
@@ -84,47 +90,54 @@
     });
   }
 
-  // Adjust links on nested pages
+  // ------------------------------------------------------------------
+  // Sesuaikan link header untuk halaman yang bersarang
+  // ------------------------------------------------------------------
   function updateHeaderLinks() {
-    if (!isSystemAnalyst) return;
+    if (!prefix) return;
 
-    document.querySelectorAll(".nav-links a").forEach((link) => {
+    document.querySelectorAll(".nav-links a, .logo").forEach((link) => {
       const href = link.getAttribute("href");
 
-      if (!href) return;
+      if (!href || /^(https?:|mailto:|tel:|#|\.\.\/)/.test(href)) return;
 
-      if (
-        href.startsWith("http") ||
-        href.startsWith("mailto:") ||
-        href.startsWith("#") ||
-        href.startsWith("../") ||
-        href.startsWith("tel:")
-      ) {
-        return;
-      }
-
-      link.setAttribute(
-        "href",
-        "../" + href.replace(/^\.?\//, "")
-      );
+      link.setAttribute("href", prefix + href.replace(/^\.?\//, ""));
     });
   }
 
-  // Translate page
+  // ------------------------------------------------------------------
+  // Terjemahan
+  // ------------------------------------------------------------------
   function translatePage(language) {
+    // Format lama: data-en / data-id
     document.querySelectorAll("[data-en][data-id]").forEach((element) => {
       const text =
         language === "id"
           ? element.getAttribute("data-id")
           : element.getAttribute("data-en");
 
-      if (text !== null) {
-        element.textContent = text;
-      }
+      if (text !== null) element.textContent = text;
     });
 
-    document.documentElement.lang =
-      language === "id" ? "id" : "en";
+    // Format baru: data-i18n, data-i18n-alt, data-i18n-aria
+    const dict = translations[language] || {};
+
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+      const value = dict[element.getAttribute("data-i18n")];
+      if (value !== undefined) element.textContent = value;
+    });
+
+    document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+      const value = dict[element.getAttribute("data-i18n-alt")];
+      if (value !== undefined) element.setAttribute("alt", value);
+    });
+
+    document.querySelectorAll("[data-i18n-aria]").forEach((element) => {
+      const value = dict[element.getAttribute("data-i18n-aria")];
+      if (value !== undefined) element.setAttribute("aria-label", value);
+    });
+
+    document.documentElement.lang = language === "id" ? "id" : "en";
 
     document.querySelectorAll("[data-lang]").forEach((button) => {
       button.setAttribute(
@@ -136,31 +149,29 @@
     localStorage.setItem("portfolio-language", language);
   }
 
-  // Language buttons
   document.addEventListener("click", (event) => {
     const target = event.target;
-
     if (!(target instanceof Element)) return;
 
     const languageButton = target.closest("[data-lang]");
-
     if (!languageButton) return;
 
     const language = languageButton.getAttribute("data-lang");
-
-    if (language === "en" || language === "id") {
-      translatePage(language);
-    }
+    if (language === "en" || language === "id") translatePage(language);
   });
 
-  // Show page content
+  // ------------------------------------------------------------------
+  // Tampilkan konten
+  // ------------------------------------------------------------------
   function showPageContent() {
     document.querySelectorAll(".reveal").forEach((item) => {
       item.classList.add("is-visible");
     });
   }
 
-  // Hide broken project images
+  // ------------------------------------------------------------------
+  // Gambar proyek (halaman System Analyst)
+  // ------------------------------------------------------------------
   function handleProjectImages() {
     document.querySelectorAll(".project-media img").forEach((img) => {
       const hideIfBroken = () => {
@@ -169,16 +180,46 @@
 
       img.addEventListener("error", hideIfBroken);
 
-      if (img.complete && img.naturalWidth === 0) {
-        hideIfBroken();
-      }
+      if (img.complete && img.naturalWidth === 0) hideIfBroken();
     });
   }
 
-  // Initialize
+  // ------------------------------------------------------------------
+  // Gambar figure (halaman SIAGA)
+  // ------------------------------------------------------------------
+  function handleFigureImages() {
+    const grid = document.getElementById("extrasGrid");
+
+    const refreshExtras = () => {
+      if (!grid) return;
+      const figures = grid.querySelectorAll(".figure.is-optional");
+      grid.hidden = [...figures].every((f) => f.hidden);
+    };
+
+    document.querySelectorAll(".figure-media img").forEach((img) => {
+      const figure = img.closest(".figure");
+
+      const onBroken = () => {
+        img.style.display = "none"; // placeholder tampil kembali
+        if (figure && figure.classList.contains("is-optional")) {
+          figure.hidden = true; // sembunyikan gambar opsional
+        }
+        refreshExtras();
+      };
+
+      img.addEventListener("error", onBroken);
+
+      if (img.complete && img.naturalWidth === 0) onBroken();
+    });
+  }
+
+  // ------------------------------------------------------------------
+  // Inisialisasi
+  // ------------------------------------------------------------------
   document.addEventListener("DOMContentLoaded", () => {
     showPageContent();
     handleProjectImages();
+    handleFigureImages();
     loadSharedComponents();
   });
 })();
