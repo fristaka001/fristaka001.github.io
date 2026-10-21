@@ -661,62 +661,85 @@ a.project-card:focus-visible {
   <!-- ===================== FOOTER ===================== -->
 <div id="footer-placeholder"></div>
 
+
 <script>
-  // Load shared header and footer
-  Promise.all([
-    fetch('../components/header.html')
-      .then(response => {
-        if (!response.ok) throw new Error('Header gagal dimuat');
-        return response.text();
-      }),
-    fetch('../components/footer.html')
-      .then(response => {
-        if (!response.ok) throw new Error('Footer gagal dimuat');
-        return response.text();
-      })
-  ])
-  .then(([header, footer]) => {
-    document.getElementById('header-placeholder').innerHTML = header;
-    document.getElementById('footer-placeholder').innerHTML = footer;
+(async function () {
+  const root = document.body.dataset.siteRoot || "./";
 
-    // Jalankan fungsi setelah header tersedia
-    initializePage();
-  })
-  .catch(error => console.error(error));
+  async function loadComponent(id, file) {
+    const response = await fetch(root + file);
 
-  function initializePage() {
-    // Tombol bahasa
-    document.querySelectorAll('.lang-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        setLanguage(btn.getAttribute('data-lang'));
-      });
+    if (!response.ok) {
+      throw new Error("Gagal memuat " + file);
+    }
+
+    document.getElementById(id).innerHTML =
+      await response.text();
+  }
+
+  function setLanguage(language) {
+    const lang = language === "id" ? "id" : "en";
+
+    document.querySelectorAll("[data-en][data-id]").forEach(el => {
+      el.textContent = el.dataset[lang];
     });
 
-    // Atur bahasa yang tersimpan
-    var savedLang = 'en';
+    document.documentElement.lang = lang;
+
+    document.title = lang === "id"
+      ? "Fristaka Putri Prawahyu | Portofolio"
+      : "Fristaka Putri Prawahyu | Portfolio";
+
+    document.querySelectorAll("[data-lang]").forEach(button => {
+      button.setAttribute(
+        "aria-pressed",
+        String(button.dataset.lang === lang)
+      );
+    });
+
     try {
-      savedLang = localStorage.getItem('portfolio-lang') || 'en';
-    } catch (e) {}
-    setLanguage(savedLang === 'id' ? 'id' : 'en');
-
-    // Menu mobile
-    var menuToggle = document.getElementById('menuToggle');
-    var siteNav = document.getElementById('siteNav');
-
-    if (menuToggle && siteNav) {
-      menuToggle.addEventListener('click', function () {
-        var isOpen = siteNav.classList.toggle('is-open');
-        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      });
-
-      siteNav.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', function () {
-          siteNav.classList.remove('is-open');
-          menuToggle.setAttribute('aria-expanded', 'false');
-        });
-      });
-    }
+      localStorage.setItem("portfolio-language", lang);
+    } catch (error) {}
   }
+
+  document.addEventListener("click", event => {
+    const button = event.target.closest("[data-lang]");
+
+    if (button) {
+      setLanguage(button.dataset.lang);
+    }
+  });
+
+  try {
+    await Promise.all([
+      loadComponent("header-placeholder", "components/header.html"),
+      loadComponent("footer-placeholder", "components/footer.html")
+    ]);
+
+    const home = root + "index.html";
+
+    document.querySelector(".logo")?.setAttribute("href", home + "#home");
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.href = home + link.getAttribute("href");
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    let language = "en";
+
+    try {
+      const saved = localStorage.getItem("portfolio-language");
+      if (saved === "id" || saved === "en") language = saved;
+    } catch (error) {}
+
+    setLanguage(language);
+  } catch (error) {
+    console.error(error);
+  }
+})();
 </script>
+
 </body>
 </html>
