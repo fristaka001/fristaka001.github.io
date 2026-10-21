@@ -2,6 +2,7 @@
 (() => {
   const currentPath = window.location.pathname;
   const isSystemAnalyst = currentPath.includes("/system-analyst/");
+
   const componentPath = isSystemAnalyst
     ? "../components/"
     : "components/";
@@ -27,11 +28,26 @@
 
       const headerPlaceholder =
         document.getElementById("header-placeholder");
+
       const footerPlaceholder =
         document.getElementById("footer-placeholder");
 
       if (headerPlaceholder) {
         headerPlaceholder.innerHTML = headerHTML;
+
+        // Make the shared header sticky
+        const header = headerPlaceholder.querySelector(".site-header");
+
+        if (header) {
+          header.style.position = "sticky";
+          header.style.top = "0";
+          header.style.zIndex = "1000";
+          header.style.width = "100%";
+          header.style.backgroundColor = "#1f2f4a";
+          header.style.borderBottom = "1px solid #3a4b68";
+          header.style.boxShadow =
+            "0 3px 12px rgba(31, 47, 74, 0.15)";
+        }
       }
 
       if (footerPlaceholder) {
@@ -45,11 +61,11 @@
         yearElement.textContent = new Date().getFullYear();
       }
 
-      // Mobile menu
-      setupMobileMenu();
-
       // Navigation links
       updateHeaderLinks();
+
+      // Mobile menu
+      setupMobileMenu();
 
       // Apply saved language
       const savedLanguage =
@@ -71,6 +87,7 @@
 
     menuToggle.addEventListener("click", () => {
       const isOpen = siteNav.classList.toggle("is-open");
+
       menuToggle.setAttribute("aria-expanded", String(isOpen));
     });
 
@@ -101,7 +118,10 @@
         return;
       }
 
-      link.setAttribute("href", "../" + href.replace(/^\.?\//, ""));
+      link.setAttribute(
+        "href",
+        "../" + href.replace(/^\.?\//, "")
+      );
     });
   }
 
@@ -118,7 +138,8 @@
       }
     });
 
-    document.documentElement.lang = language === "id" ? "id" : "en";
+    document.documentElement.lang =
+      language === "id" ? "id" : "en";
 
     document.querySelectorAll("[data-lang]").forEach((button) => {
       button.setAttribute(
@@ -169,7 +190,7 @@
     });
   }
 
-  // Initialize once
+  // Initialize
   document.addEventListener("DOMContentLoaded", () => {
     showPageContent();
     handleProjectImages();
