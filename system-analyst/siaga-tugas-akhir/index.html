@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIAGA (Tugas Akhir) | Fristaka Putri Prawahyu</title>
+  <meta name="description" content="Studi kasus SIAGA pada tahap tugas akhir: implementasi aplikasi berdasarkan rancangan tahap magang di Diskominfo Kabupaten Jombang, serta pengujian sistem.">
+
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/case-study.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main"
+     data-en="Skip to main content"
+     data-id="Langsung ke konten utama">Langsung ke konten utama</a>
+  <div id="header-placeholder"></div>
+
+  <main id="main">
+
+    <!-- ===================== A. HERO PROYEK ===================== -->
+    <section class="hero" id="top">
+      <div class="container">
+        <p class="section-label"
+           data-en="Project Case Study"
+           data-id="Studi Kasus Proyek">Studi Kasus Proyek</p>
+        <!-- Nama proyek tidak diterjemahkan -->
+        <h1>SIAGA &mdash; Sistem Informasi Agenda Kegiatan Dinas</h1>
+        <p class="hero-context"
+           data-en="Completed as the final project of the D3 Informatics Management program, continuing the SIAGA design from the internship at Diskominfo Kabupaten Jombang."
+           data-id="Dikerjakan sebagai tugas akhir program D3 Manajemen Informatika, melanjutkan rancangan SIAGA dari tahap magang di Diskominfo Kabupaten Jombang.">Dikerjakan sebagai tugas akhir program D3 Manajemen Informatika, melanjutkan rancangan SIAGA dari tahap magang di Diskominfo Kabupaten Jombang.</p>
+        <p class="hero-summary"
+           data-en="My work at this stage focused on implementing the application based on the earlier design, realizing its features, and testing the system. This page shows how the SIAGA design was turned into an application."
+           data-id="Fokus pekerjaan saya pada tahap ini adalah implementasi aplikasi berdasarkan rancangan sebelumnya, realisasi fitur, dan pengujian sistem. Halaman ini memperlihatkan bagaimana rancangan SIAGA diwujudkan menjadi aplikasi.">Fokus pekerjaan saya pada tahap ini adalah implementasi aplikasi berdasarkan rancangan sebelumnya, realisasi fitur, dan pengujian sistem. Halaman ini memperlihatkan bagaimana rancangan SIAGA diwujudkan menjadi aplikasi.</p>
+
+        <p class="stage-note"
+           data-en="The final project builds on the internship stage. Requirements analysis, business process design, and mockups were completed during the internship and serve as the basis for the implementation shown here."
+           data-id="Tugas akhir ini melanjutkan hasil tahap magang. Analisis kebutuhan, perancangan proses bisnis, dan mockup sudah dikerjakan pada tahap magang dan menjadi dasar implementasi yang ditampilkan di sini.">Tugas akhir ini melanjutkan hasil tahap magang. Analisis kebutuhan, perancangan proses bisnis, dan mockup sudah dikerjakan pada tahap magang dan menjadi dasar implementasi yang ditampilkan di sini.</p>
+
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="#implementasi"
+             data-en="View Implementation"
+             data-id="Lihat Implementasi">Lihat Implementasi</a>
+          <a class="btn btn-outline" href="#ringkasan"
+             data-en="Project Overview"
+             data-id="Ringkasan Proyek">Ringkasan Proyek</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== B. RINGKASAN PROYEK ===================== -->
+    <section id="ringkasan" class="section-alt">
+      <div class="container">
+        <p class="section-label"
+           data-en="Overview"
+           data-id="Ringkasan">Ringkasan</p>
+        <h2 data-en="Project Overview"
+            data-id="Ringkasan Proyek">Ringkasan Proyek</h2>
+
+        <dl class="summary-grid">
+          <div class="summary-card">
+            <dt data-en="Project Name" data-id="Nama Proyek">Nama Proyek</dt>
+            <dd>SIAGA</dd>
+          </div>
+          <div class="summary-card">
+            <dt data-en="Institution" data-id="Instansi">Instansi</dt>
+            <dd>Diskominfo Kabupaten Jombang</dd>
+          </div>
+          <div class="summary-card">
+            <dt data-en="Context" data-id="Konteks">Konteks</dt>
+            <dd data-en="Final Project" data-id="Tugas Akhir">Tugas Akhir</dd>
+          </div>
+          <div class="summary-card">
+            <dt data-en="Work Focus" data-id="Fokus Pekerjaan">Fokus Pekerjaan</dt>
+            <dd data-en="Application implementation and system testing"
+                data-id="Implementasi aplikasi dan pengujian sistem">Implementasi aplikasi dan pengujian sistem</dd>
+          </div>
+          <div class="summary-card">
+            <dt data-en="Technology" data-id="Teknologi">Teknologi</dt>
+            <dd>PHP, CodeIgniter 3, MySQL, XAMPP</dd>
+          </div>
+          <div class="summary-card">
+            <dt data-en="Deliverables" data-id="Hasil Pekerjaan">Hasil Pekerjaan</dt>
+            <dd data-en="Available application, documentation, and test results (see the Deliverables section)"
+                data-id="Aplikasi, dokumentasi, dan hasil pengujian yang tersedia (lihat bagian Hasil Pekerjaan)">Aplikasi, dokumentasi, dan hasil pengujian yang tersedia (lihat bagian Hasil Pekerjaan)</dd>
+          </div>
+        </dl>
+
+        <h3 class="flow-title"
+            data-en="Workflow"
+            data-id="Alur Pengerjaan">Alur Pengerjaan</h3>
+        <ol class="flow" aria-label="Alur pengerjaan proyek"
+            data-en-aria="Project workflow"
+            data-id-aria="Alur pengerjaan proyek">
+          <!-- Tahap 1 dikerjakan pada magang, jadi ditampilkan dengan gaya putus-putus (class is-later yang sudah ada) -->
+          <li class="is-later">
+            <h3><span data-en="Internship Design" data-id="Rancangan Tahap Magang">Rancangan Tahap Magang</span><span class="flow-badge" data-en="Previous stage" data-id="Tahap sebelumnya">Tahap sebelumnya</span></h3>
+            <p data-en="Requirements analysis, business process design, and mockups completed during the internship."
+               data-id="Analisis kebutuhan, perancangan proses bisnis, dan mockup yang dikerjakan pada tahap magang.">Analisis kebutuhan, perancangan proses bisnis, dan mockup yang dikerjakan pada tahap magang.</p>
+          </li>
+          <li>
+            <h3 data-en="Application Implementation" data-id="Implementasi Aplikasi">Implementasi Aplikasi</h3>
+            <p data-en="Turning the design into an application."
+               data-id="Mewujudkan rancangan menjadi aplikasi.">Mewujudkan rancangan menjadi aplikasi.</p>
+          </li>
+          <li>
+            <h3 data-en="System Testing" data-id="Pengujian Sistem">Pengujian Sistem</h3>
+            <p data-en="Testing the application features against the system requirements."
+               data-id="Menguji fitur aplikasi terhadap kebutuhan sistem.">Menguji fitur aplikasi terhadap kebutuhan sistem.</p>
+          </li>
+          <li>
+            <h3 data-en="Final Project Report" data-id="Laporan Tugas Akhir">Laporan Tugas Akhir</h3>
+            <p data-en="Documenting the implementation and testing in the final project report."
+               data-id="Mendokumentasikan implementasi dan pengujian dalam laporan tugas akhir.">Mendokumentasikan implementasi dan pengujian dalam laporan tugas akhir.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== C. LATAR BELAKANG DAN PERMASALAHAN ===================== -->
+    <section id="latar-belakang">
+      <div class="container prose">
+        <p class="section-label"
+           data-en="Background"
+           data-id="Latar Belakang">Latar Belakang</p>
+        <h2 data-en="Background and Problem Statement"
+            data-id="Latar Belakang dan Permasalahan">Latar Belakang dan Permasalahan</h2>
+        <p class="section-intro"
+           data-en="SIAGA was designed during my internship at Diskominfo Kabupaten Jombang. In the final project, that design was continued into an application."
+           data-id="SIAGA dirancang pada tahap magang di Diskominfo Kabupaten Jombang. Pada tugas akhir, rancangan tersebut dilanjutkan menjadi aplikasi.">SIAGA dirancang pada tahap magang di Diskominfo Kabupaten Jombang. Pada tugas akhir, rancangan tersebut dilanjutkan menjadi aplikasi.</p>
+
+        <!-- EDIT: ganti kotak "Isi" dengan penjelasan dari laporan tugas akhir, lalu hapus <span class="fill-tag"> dan class "fill-in" -->
+        <h3 data-en="Background" data-id="Latar Belakang">Latar Belakang</h3>
+        <div class="fill-in">
+          <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
+          <p data-en="[Fill in here: explain the context of the need for an official activity agenda system, based on the final project report.]"
+             data-id="[Isi di sini: jelaskan konteks kebutuhan sistem agenda kegiatan dinas, berdasarkan laporan tugas akhir.]">[Isi di sini: jelaskan konteks kebutuhan sistem agenda kegiatan dinas, berdasarkan laporan tugas akhir.]</p>
+        </div>
+
+        <h3 class="block-title" data-en="Problem Statement" data-id="Permasalahan">Permasalahan</h3>
+        <div class="fill-in">
+          <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
+          <p data-en="[Fill in here: describe only the problems that are supported by the final project documentation.]"
+             data-id="[Isi di sini: jelaskan hanya permasalahan yang didukung oleh dokumentasi tugas akhir.]">[Isi di sini: jelaskan hanya permasalahan yang didukung oleh dokumentasi tugas akhir.]</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== D. IMPLEMENTASI SISTEM ===================== -->
+    <section id="implementasi" class="section-alt">
+      <div class="container">
+        <p class="section-label"
+           data-en="Implementation"
+           data-id="Implementasi">Implementasi</p>
+        <h2 data-en="System Implementation"
+            data-id="Implementasi Sistem">Implementasi Sistem</h2>
+        <p class="section-intro"
+           data-en="The SIAGA application was implemented based on the design from the internship stage. This section summarizes the features that were developed and how the application is used."
+           data-id="Aplikasi SIAGA diimplementasikan berdasarkan rancangan pada tahap magang. Bagian ini merangkum fitur yang dikembangkan dan alur penggunaan aplikasi.">Aplikasi SIAGA diimplementasikan berdasarkan rancangan pada tahap magang. Bagian ini merangkum fitur yang dikembangkan dan alur penggunaan aplikasi.</p>
+
+        <!-- EDIT: isi setiap kotak "Isi" sesuai laporan tugas akhir. Bedakan fitur selesai, fitur diuji, dan fitur yang hanya direncanakan. -->
+        <div class="analysis-grid">
+          <article class="analysis-card">
+            <h3 data-en="Implemented Features" data-id="Fitur yang Diimplementasikan">Fitur yang Diimplementasikan</h3>
+            <p data-en="Features that have been fully developed."
+               data-id="Fitur yang sudah selesai dikembangkan.">Fitur yang sudah selesai dikembangkan.</p>
+            <div class="fill-in">
+              <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
+              <p data-en="[Fill in here: the SIAGA features that were actually completed, according to the final project report.]"
+                 data-id="[Isi di sini: fitur SIAGA yang benar-benar selesai diimplementasikan, sesuai laporan tugas akhir.]">[Isi di sini: fitur SIAGA yang benar-benar selesai diimplementasikan, sesuai laporan tugas akhir.]</p>
+            </div>
+          </article>
+
+          <article class="analysis-card">
+            <h3 data-en="Tested Features" data-id="Fitur yang Diuji">Fitur yang Diuji</h3>
+            <p data-en="Features that went through system testing."
+               data-id="Fitur yang sudah melalui pengujian sistem.">Fitur yang sudah melalui pengujian sistem.</p>
+            <div class="fill-in">
+              <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
+              <p data-en="[Fill in here: the features covered by the testing in the report.]"
+                 data-id="[Isi di sini: fitur yang tercakup dalam pengujian pada laporan.]">[Isi di sini: fitur yang tercakup dalam pengujian pada laporan.]</p>
+            </div>
+          </article>
+
+          <article class="analysis-card">
+            <h3 data-en="Usage Flow and User Roles" data-id="Alur Penggunaan dan Peran Pengguna">Alur Penggunaan dan Peran Pengguna</h3>
+            <p data-en="How the application is used and who uses it."
+               data-id="Bagaimana aplikasi digunakan dan siapa saja penggunanya.">Bagaimana aplikasi digunakan dan siapa saja penggunanya.</p>
+            <div class="fill-in">
+              <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
+              <p data-en="[Fill in here: the usage flow and user roles, based on the actual implementation.]"
+                 data-id="[Isi di sini: alur penggunaan dan peran pengguna, berdasarkan implementasi sebenarnya.]">[Isi di sini: alur penggunaan dan peran pengguna, berdasarkan implementasi sebenarnya.]</p>
+            </div>
+          </article>
+
+          <!-- HAPUS seluruh kartu ini jika tidak ada fitur yang hanya direncanakan -->
+          <article class="analysis-card">
+            <h3 data-en="Planned Features" data-id="Fitur yang Direncanakan">Fitur yang Direncanakan</h3>
+            <p data-en="Features that are only planned and not yet implemented."
+               data-id="Fitur yang baru direncanakan dan belum diimplementasikan.">Fitur yang baru direncanakan dan belum diimplementasikan.</p>
+            <div class="fill-in">
+              <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
+              <p data-en="[Fill in here if applicable, or remove this card.]"
+                 data-id="[Isi di sini jika ada, atau hapus kartu ini.]">[Isi di sini jika ada, atau hapus kartu ini.]</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== E. TEKNOLOGI YANG DIGUNAKAN ===================== -->
+    <section id="teknologi">
+      <div class="container">
+        <p class="section-label"
+           data-en="Technology"
+           data-id="Teknologi">Teknologi</p>
+        <h2 data-en="Technology Used"
+            data-id="Teknologi yang Digunakan">Teknologi yang Digunakan</h2>
+        <p class="section-intro"
+           data-en="The technologies used to build and run the SIAGA application."
+           data-id="Teknologi yang digunakan untuk membangun dan menjalankan aplikasi SIAGA.">Teknologi yang digunakan untuk membangun dan menjalankan aplikasi SIAGA.</p>
+
+        <dl class="summary-grid">
+          <div class="summary-card">
+            <dt data-en="Programming Language" data-id="Bahasa Pemrograman">Bahasa Pemrograman</dt>
+            <dd>PHP</dd>
+          </div>
+          <div class="summary-card">
+            <dt data-en="Framework" data-id="Framework">Framework</dt>
+            <dd>CodeIgniter 3</dd>
+          </div>
+          <div class="summary-card">
+            <dt data-en="Database" data-id="Basis Data">Basis Data</dt>
+            <dd>MySQL</dd>
+          </div>
+          <div class="summary-card">
+            <dt data-en="Development Environment" data-id="Lingkungan Pengembangan">Lingkungan Pengembangan</dt>
+            <dd data-en="XAMPP (local)" data-id="XAMPP (lokal)">XAMPP (lokal)</dd>
+          </div>
+        </dl>
+
+        <!-- EDIT: tambahkan Bootstrap atau teknologi lain hanya jika benar-benar digunakan menurut laporan -->
+        <div class="fill-in prose">
+          <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
+          <p data-en="[Confirm here: add Bootstrap or any other technology only if it was actually used according to the final project report, or remove this box.]"
+             data-id="[Konfirmasi di sini: tambahkan Bootstrap atau teknologi lain hanya jika benar-benar digunakan menurut laporan tugas akhir, atau hapus kotak ini.]">[Konfirmasi di sini: tambahkan Bootstrap atau teknologi lain hanya jika benar-benar digunakan menurut laporan tugas akhir, atau hapus kotak ini.]</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== F. PENGUJIAN SISTEM ===================== -->
+    <section id="pengujian" class="section-alt">
+      <div class="container">
+        <p class="section-label"
+           data-en="Testing"
+           data-id="Pengujian">Pengujian</p>
+        <h2 data-en="System Testing"
+            data-id="Pengujian Sistem">Pengujian Sistem</h2>
+        <p class="section-intro"
+           data-en="This section summarizes the testing method and results as recorded in the final project report."
+           data-id="Bagian ini merangkum metode dan hasil pengujian sebagaimana tercatat dalam laporan tugas akhir.">Bagian ini merangkum metode dan hasil pengujian sebagaimana tercatat dalam laporan tugas akhir.</p>
+
+        <div class="prose">
+          <div class="fill-in">
+            <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
+            <p data-en="[Fill in here: the testing method actually used in the final project report.]"
+               data-id="[Isi di sini: metode pengujian yang benar-benar digunakan dalam laporan tugas akhir.]">[Isi di sini: metode pengujian yang benar-benar digunakan dalam laporan tugas akhir.]</p>
+          </div>
+
+          <div class="fill-in">
+            <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
+            <p data-en="[Fill in here: test scenarios, steps, expected results, and actual results, only as far as the data is available. Do not claim that all tests passed without evidence.]"
+               data-id="[Isi di sini: skenario, langkah pengujian, hasil yang diharapkan, dan hasil aktual, hanya sejauh datanya tersedia. Jangan menyatakan semua pengujian berhasil tanpa bukti.]">[Isi di sini: skenario, langkah pengujian, hasil yang diharapkan, dan hasil aktual, hanya sejauh datanya tersedia. Jangan menyatakan semua pengujian berhasil tanpa bukti.]</p>
+          </div>
+        </div>
+
+        <!-- OPSIONAL: TABEL PENGUJIAN
+             Tabel di bawah dinonaktifkan karena CSS tabelnya belum ada di case-study.css.
+             Tambahkan CSS .table-wrap dan .test-table (lihat catatan terpisah), lalu hapus
+             tanda komentar pada blok ini dan isi baris dengan data dari laporan.
+
+        <div class="table-wrap">
+          <table class="test-table">
+            <thead>
+              <tr>
+                <th scope="col" data-en="Scenario" data-id="Skenario">Skenario</th>
+                <th scope="col" data-en="Test Steps" data-id="Langkah Pengujian">Langkah Pengujian</th>
+                <th scope="col" data-en="Expected Result" data-id="Hasil yang Diharapkan">Hasil yang Diharapkan</th>
+                <th scope="col" data-en="Actual Result" data-id="Hasil Aktual">Hasil Aktual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        -->
+      </div>
+    </section>
+
+    <!-- ===================== G. DOKUMENTASI TAMPILAN APLIKASI ===================== -->
+    <section id="dokumentasi">
+      <div class="container">
+        <p class="section-label"
+           data-en="Documentation"
+           data-id="Dokumentasi">Dokumentasi</p>
+        <h2 data-en="Application Screenshots"
+            data-id="Dokumentasi Tampilan Aplikasi">Dokumentasi Tampilan Aplikasi</h2>
+        <p class="section-intro"
+           data-en="Screenshots of the SIAGA application as implemented in the final project."
+           data-id="Tangkapan layar aplikasi SIAGA hasil implementasi pada tugas akhir.">Tangkapan layar aplikasi SIAGA hasil implementasi pada tugas akhir.</p>
+
+        <!-- GANTI GAMBAR: unggah screenshot asli ke system-analyst/siaga-tugas-akhir/images/
+             lalu sesuaikan nama file pada src, teks alt, dan keterangan gambar dengan halaman yang sebenarnya. -->
+        <figure class="figure">
+          <div class="figure-media">
+            <div class="figure-placeholder">
+              <span data-en="Add image here" data-id="Tambahkan gambar di sini">Tambahkan gambar di sini</span>
+              <code>images/siaga-dashboard.png</code>
+            </div>
+            <img src="images/siaga-dashboard.png"
+                 alt="Tampilan dashboard aplikasi SIAGA"
+                 data-en-alt="SIAGA application dashboard view"
+                 data-id-alt="Tampilan dashboard aplikasi SIAGA">
+          </div>
+          <figcaption data-en="Figure 1. SIAGA application dashboard."
+                      data-id="Gambar 1. Dashboard aplikasi SIAGA.">Gambar 1. Dashboard aplikasi SIAGA.</figcaption>
+        </figure>
+
+        <figure class="figure">
+          <div class="figure-media">
+            <div class="figure-placeholder">
+              <span data-en="Add image here" data-id="Tambahkan gambar di sini">Tambahkan gambar di sini</span>
+              <code>images/siaga-agenda.png</code>
+            </div>
+            <img src="images/siaga-agenda.png"
+                 alt="Tampilan halaman agenda aplikasi SIAGA"
+                 data-en-alt="SIAGA application agenda page view"
+                 data-id-alt="Tampilan halaman agenda aplikasi SIAGA">
+          </div>
+          <figcaption data-en="Figure 2. SIAGA application agenda page."
+                      data-id="Gambar 2. Halaman agenda aplikasi SIAGA.">Gambar 2. Halaman agenda aplikasi SIAGA.</figcaption>
+        </figure>
+
+        <div class="prose">
+          <div class="fill-in">
+            <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
+            <p data-en="[Fill in here: briefly explain the pages shown in the screenshots, based on the actual application.]"
+               data-id="[Isi di sini: jelaskan singkat halaman yang ditampilkan pada screenshot, sesuai aplikasi yang sebenarnya.]">[Isi di sini: jelaskan singkat halaman yang ditampilkan pada screenshot, sesuai aplikasi yang sebenarnya.]</p>
+          </div>
+        </div>
+
+        <!-- GAMBAR OPSIONAL: jika file belum diunggah, kotak ini otomatis disembunyikan oleh script.js.
+             Ganti nama file dan keterangan sesuai screenshot asli, atau hapus blok ini jika tidak diperlukan. -->
+        <div class="extras-grid" id="extrasGrid">
+          <figure class="figure is-optional">
+            <div class="figure-media">
+              <div class="figure-placeholder"><code>images/siaga-screenshot-3.png</code></div>
+              <img src="images/siaga-screenshot-3.png"
+                   alt="Tampilan aplikasi SIAGA"
+                   data-en-alt="SIAGA application view"
+                   data-id-alt="Tampilan aplikasi SIAGA">
+            </div>
+            <figcaption data-en="Figure 3. SIAGA application view."
+                        data-id="Gambar 3. Tampilan aplikasi SIAGA.">Gambar 3. Tampilan aplikasi SIAGA.</figcaption>
+          </figure>
+
+          <figure class="figure is-optional">
+            <div class="figure-media">
+              <div class="figure-placeholder"><code>images/siaga-screenshot-4.png</code></div>
+              <img src="images/siaga-screenshot-4.png"
+                   alt="Tampilan aplikasi SIAGA"
+                   data-en-alt="SIAGA application view"
+                   data-id-alt="Tampilan aplikasi SIAGA">
+            </div>
+            <figcaption data-en="Figure 4. SIAGA application view."
+                        data-id="Gambar 4. Tampilan aplikasi SIAGA.">Gambar 4. Tampilan aplikasi SIAGA.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== H. HASIL PEKERJAAN ===================== -->
+    <section id="hasil" class="section-alt">
+      <div class="container">
+        <p class="section-label"
+           data-en="Results"
+           data-id="Hasil">Hasil</p>
+        <h2 data-en="Deliverables"
+            data-id="Hasil Pekerjaan">Hasil Pekerjaan</h2>
+        <p class="section-intro"
+           data-en="Results I produced during the final project stage:"
+           data-id="Hasil yang saya kerjakan pada tahap tugas akhir:">Hasil yang saya kerjakan pada tahap tugas akhir:</p>
+
+        <!-- EDIT: ubah, tambah, atau hapus butir sesuai hasil yang benar-benar selesai dan tersedia -->
+        <ul class="result-list">
+          <li data-en="SIAGA application implemented from the internship design (see the System Implementation section)."
+              data-id="Aplikasi SIAGA yang diimplementasikan dari rancangan tahap magang (lihat bagian Implementasi Sistem).">Aplikasi SIAGA yang diimplementasikan dari rancangan tahap magang (lihat bagian Implementasi Sistem).</li>
+          <li data-en="System testing of the SIAGA application (see the System Testing section)."
+              data-id="Pengujian sistem terhadap aplikasi SIAGA (lihat bagian Pengujian Sistem).">Pengujian sistem terhadap aplikasi SIAGA (lihat bagian Pengujian Sistem).</li>
+          <li class="is-fill"
+              data-en="[Add other deliverables that actually exist, such as the final project report or completed features, or remove this item.]"
+              data-id="[Tambahkan hasil lain yang benar-benar tersedia, misalnya laporan tugas akhir atau fitur yang selesai, atau hapus butir ini.]">[Tambahkan hasil lain yang benar-benar tersedia, misalnya laporan tugas akhir atau fitur yang selesai, atau hapus butir ini.]</li>
+        </ul>
+
+        <p class="stage-note"
+           data-en="Note: requirements analysis, business process design, and mockups were results of the internship stage. The final project focused on implementation and testing."
+           data-id="Catatan: analisis kebutuhan, perancangan proses bisnis, dan mockup merupakan hasil tahap magang. Tugas akhir berfokus pada implementasi dan pengujian.">Catatan: analisis kebutuhan, perancangan proses bisnis, dan mockup merupakan hasil tahap magang. Tugas akhir berfokus pada implementasi dan pengujian.</p>
+      </div>
+    </section>
+
+    <!-- ===================== I. REFLEKSI DAN PEMBELAJARAN ===================== -->
+    <section id="refleksi">
+      <div class="container">
+        <p class="section-label"
+           data-en="Reflection"
+           data-id="Refleksi">Refleksi</p>
+        <h2 data-en="Reflection and Lessons Learned"
+            data-id="Refleksi dan Pembelajaran">Refleksi dan Pembelajaran</h2>
+
+        <!-- EDIT: sesuaikan tiga poin ini dengan pengalaman nyata Anda selama tugas akhir -->
+        <div class="reflection-grid">
+          <article class="reflection-card">
+            <h3 data-en="From Design to Application" data-id="Dari Rancangan ke Aplikasi">Dari Rancangan ke Aplikasi</h3>
+            <p data-en="I learned to turn business process designs and mockups into a working application."
+               data-id="Saya belajar menerjemahkan rancangan proses bisnis dan mockup menjadi aplikasi yang dapat digunakan.">Saya belajar menerjemahkan rancangan proses bisnis dan mockup menjadi aplikasi yang dapat digunakan.</p>
+          </article>
+          <article class="reflection-card">
+            <h3 data-en="Handling Data" data-id="Mengelola Data">Mengelola Data</h3>
+            <p data-en="I learned to structure and manage application data in a database."
+               data-id="Saya belajar menyusun dan mengelola data aplikasi dalam basis data.">Saya belajar menyusun dan mengelola data aplikasi dalam basis data.</p>
+          </article>
+          <article class="reflection-card">
+            <h3 data-en="The Value of Testing" data-id="Pentingnya Pengujian">Pentingnya Pengujian</h3>
+            <p data-en="I learned that testing helps confirm that features work as the requirements describe."
+               data-id="Saya belajar bahwa pengujian membantu memastikan fitur berjalan sesuai kebutuhan yang telah dirumuskan.">Saya belajar bahwa pengujian membantu memastikan fitur berjalan sesuai kebutuhan yang telah dirumuskan.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== J. PENUTUP DAN KONTAK ===================== -->
+    <section id="kontak">
+      <div class="container">
+        <div class="contact-box">
+          <p class="section-label"
+             data-en="Closing"
+             data-id="Penutup">Penutup</p>
+          <h2 data-en="Thank You for Visiting"
+              data-id="Terima Kasih Sudah Berkunjung">Terima Kasih Sudah Berkunjung</h2>
+          <p data-en="You can go back to the System Analyst page, see the earlier internship stage of SIAGA, or contact me through the links below."
+             data-id="Anda dapat kembali ke halaman System Analyst, melihat tahap magang SIAGA, atau menghubungi saya melalui tautan berikut.">Anda dapat kembali ke halaman System Analyst, melihat tahap magang SIAGA, atau menghubungi saya melalui tautan berikut.</p>
+          <div class="contact-links">
+            <a class="btn btn-primary" href="../index.html"
+               data-en="Back to System Analyst"
+               data-id="Kembali ke System Analyst">Kembali ke System Analyst</a>
+            <a class="btn btn-outline" href="../siaga-magang/index.html"
+               data-en="SIAGA (Internship)"
+               data-id="SIAGA (Magang)">SIAGA (Magang)</a>
+            <!-- EDIT EMAIL: ganti your-email@example.com dengan email asli Anda (samakan dengan halaman lain) -->
+            <a class="btn btn-outline" href="mailto:your-email@example.com">Email</a>
+            <!-- EDIT LINKEDIN: ganti dengan URL profil LinkedIn asli Anda (samakan dengan halaman lain) -->
+            <a class="btn btn-outline" href="https://www.linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a class="btn btn-outline" href="https://github.com/fristaka001" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="../../js/script.js" defer></script>
+
+</body>
+</html>
