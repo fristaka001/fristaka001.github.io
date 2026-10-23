@@ -354,3 +354,9 @@ h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
   .extras-grid,
   .flow { grid-template-columns: 1fr; }
 }
+
+.table-wrap { overflow-x: auto; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 1.5rem; }
+.test-table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 0.9rem; }
+.test-table th, .test-table td { text-align: left; vertical-align: top; padding: 0.75rem 1.2rem; border-top: 1px solid var(--border); }
+.test-table thead th { border-top: 0; background: var(--sage-light); color: var(--navy); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.test-table td { color: var(--muted); }
