@@ -1019,3 +1019,43 @@ a.project-card:focus-visible {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* ==== BUSINESS PROCESS GRID ==== */
+.business-process-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 32px;
+}
+
+.business-process-grid .figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.business-process-grid .figure-media {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.business-process-grid .figure-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.business-process-grid figcaption {
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* Tampilan mobile */
+@media (max-width: 700px) {
+  .business-process-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
