@@ -961,35 +961,28 @@ a.project-card:focus-visible {
   line-height: 1.55;
 }
 
-/* Daftar: beri jarak antar item */
+/* Daftar: ukuran font seragam di semua kartu */
 #analisis .analysis-card ol,
 #analisis .analysis-card ul {
   margin: 0;
   padding-left: 1.3rem;
+}
+
+#analisis .analysis-card li,
+#analisis .analysis-card li > strong,
+#analisis .analysis-card li > span {
   font-size: .95rem;
+  line-height: 1.6;
 }
 
 #analisis .analysis-card li {
   min-width: 0;
   margin-bottom: 8px;
-  line-height: 1.6;
   overflow-wrap: anywhere;
 }
 
 #analisis .analysis-card li:last-child {
   margin-bottom: 0;
-}
-
-/* Kartu 2 dan 4: judul tebal + deskripsi satu alur (inline) */
-#analisis .analysis-card:nth-child(2) li > strong,
-#analisis .analysis-card:nth-child(4) li > strong {
-  font-size: .95rem;
-}
-
-#analisis .analysis-card:nth-child(2) li > span,
-#analisis .analysis-card:nth-child(4) li > span {
-  font-size: .9rem;
-  line-height: 1.55;
 }
 
 /* Kartu 3: kebutuhan fungsional, 3 kolom, label di atas deskripsi */
@@ -1007,15 +1000,6 @@ a.project-card:focus-visible {
 #analisis .analysis-card:nth-child(3) li > strong,
 #analisis .analysis-card:nth-child(3) li > span {
   display: block;
-}
-
-#analisis .analysis-card:nth-child(3) li > strong {
-  font-size: .8rem;
-  letter-spacing: .02em;
-}
-
-#analisis .analysis-card:nth-child(3) li > span {
-  font-size: .92rem;
 }
 
 /* Tablet */
