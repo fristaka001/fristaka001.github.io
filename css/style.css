@@ -930,86 +930,92 @@ a.project-card:focus-visible {
   }
 }
 
+/* ==== ANALISIS: LAYOUT VERTIKAL ==== */
 
-/* ==== FINAL FIX: ANALYSIS VERTICAL LAYOUT ==== */
-
-/* Paksa empat kartu tersusun ke bawah */
 #analisis .analysis-grid {
   display: flex !important;
   flex-direction: column !important;
-  gap: 12px;
+  gap: 16px;
   margin-top: 24px;
   align-items: stretch;
 }
 
-/* Ukuran kartu */
 #analisis .analysis-card {
   display: block;
+  box-sizing: border-box;
   width: 100%;
-  padding: 16px 20px;
+  min-width: 0;
+  padding: 20px 24px;
   border-radius: 10px;
 }
 
-/* Judul kartu */
 #analisis .analysis-card h3 {
+  margin: 0 0 4px;
   font-size: 1.1rem;
   line-height: 1.4;
 }
 
-/* Deskripsi */
 #analisis .analysis-card > p {
+  margin: 0 0 14px;
   font-size: .9rem;
   line-height: 1.55;
 }
 
-/* Isi daftar */
+/* Daftar: beri jarak antar item */
 #analisis .analysis-card ol,
 #analisis .analysis-card ul {
+  margin: 0;
+  padding-left: 1.3rem;
   font-size: .95rem;
 }
 
 #analisis .analysis-card li {
+  min-width: 0;
+  margin-bottom: 8px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+#analisis .analysis-card li:last-child {
+  margin-bottom: 0;
+}
+
+/* Kartu 2 dan 4: judul tebal + deskripsi satu alur (inline) */
+#analisis .analysis-card:nth-child(2) li > strong,
+#analisis .analysis-card:nth-child(4) li > strong {
+  font-size: .95rem;
+}
+
+#analisis .analysis-card:nth-child(2) li > span,
+#analisis .analysis-card:nth-child(4) li > span {
+  font-size: .9rem;
   line-height: 1.55;
 }
 
-/* Tujuan sistem */
-#analisis .analysis-card:nth-child(1) ol > li {
-  font-size: .95rem;
-}
-
-/* Pengguna sistem */
-#analisis .analysis-card:nth-child(2) ul > li > strong {
-  font-size: .95rem;
-}
-
-#analisis .analysis-card:nth-child(2) ul > li > span {
-  font-size: .9rem;
-  line-height: 1.5;
-}
-
-/* Kebutuhan fungsional */
+/* Kartu 3: kebutuhan fungsional, 3 kolom, label di atas deskripsi */
 #analisis .analysis-card:nth-child(3) ol {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: 18px;
+  column-gap: 28px;
+  row-gap: 14px;
 }
 
-#analisis .analysis-card:nth-child(3) ol > li > strong {
-  font-size: .78rem;
+#analisis .analysis-card:nth-child(3) li {
+  margin-bottom: 0;
 }
 
-#analisis .analysis-card:nth-child(3) ol > li > span {
+#analisis .analysis-card:nth-child(3) li > strong,
+#analisis .analysis-card:nth-child(3) li > span {
+  display: block;
+}
+
+#analisis .analysis-card:nth-child(3) li > strong {
+  font-size: .8rem;
+  letter-spacing: .02em;
+}
+
+#analisis .analysis-card:nth-child(3) li > span {
   font-size: .92rem;
-}
-
-/* Kebutuhan nonfungsional */
-#analisis .analysis-card:nth-child(4) ul > li > strong {
-  font-size: .95rem;
-}
-
-#analisis .analysis-card:nth-child(4) ul > li > span {
-  font-size: .9rem;
-  line-height: 1.5;
 }
 
 /* Tablet */
@@ -1022,12 +1028,10 @@ a.project-card:focus-visible {
 /* HP */
 @media (max-width: 520px) {
   #analisis .analysis-card {
-    padding: 13px 14px;
+    padding: 14px 16px;
   }
 
-  #analisis .analysis-card:nth-child(2) ul,
-  #analisis .analysis-card:nth-child(3) ol,
-  #analisis .analysis-card:nth-child(4) ul {
+  #analisis .analysis-card:nth-child(3) ol {
     grid-template-columns: 1fr;
   }
 }
