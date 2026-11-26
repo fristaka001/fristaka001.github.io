@@ -1059,3 +1059,56 @@ a.project-card:focus-visible {
     gap: 24px;
   }
 }
+
+
+/* ==== SYSTEM DESIGN GRID ==== */
+.system-design-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.system-design-grid .figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.system-design-grid .figure-media {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.system-design-grid .figure-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.system-design-grid figcaption {
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* Struktur menu di tengah */
+.system-design-grid .menu-structure {
+  grid-column: 1 / -1;
+  width: 55%;
+  justify-self: center;
+}
+
+/* Tampilan mobile */
+@media (max-width: 700px) {
+  .system-design-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .system-design-grid .menu-structure {
+    grid-column: auto;
+    width: 100%;
+  }
+}
+
