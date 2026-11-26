@@ -1082,44 +1082,42 @@ a.project-card:focus-visible {
     padding: 24px 22px 20px;
     border-radius: 14px;
   }
-}/* ==== Perbaikan tampilan #analisis (versi ringkas, tanpa mengubah warna) ==== */
+}
+
+/* ==== Perbaikan tampilan #analisis (versi padat, tanpa mengubah warna) ==== */
+
+#analisis {
+  padding-block: 40px;
+}
 
 #analisis .analysis-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: 28px;
-  align-items: stretch;
+  gap: 12px;
+  margin-top: 18px;
+  align-items: start;
 }
 
 #analisis .analysis-card {
-  display: flex;
-  flex-direction: column;
-  padding: 18px 20px 14px;
-  border-radius: 12px;
+  padding: 12px 16px 8px;
+  border-radius: 10px;
   border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 4px 12px rgba(0, 0, 0, .04);
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-
-#analisis .analysis-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .05), 0 8px 18px rgba(0, 0, 0, .07);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
 }
 
 /* Judul & deskripsi kartu */
 #analisis .analysis-card h3 {
-  margin: 0 0 4px;
-  font-size: 1.05rem;
+  margin: 0 0 2px;
+  font-size: 1rem;
   line-height: 1.3;
 }
 
 #analisis .analysis-card > p {
-  margin: 0 0 8px;
-  padding-bottom: 10px;
-  font-size: .85rem;
-  line-height: 1.5;
-  opacity: .78;
+  margin: 0 0 4px;
+  padding-bottom: 6px;
+  font-size: .8rem;
+  line-height: 1.4;
+  opacity: .75;
   border-bottom: 1px solid color-mix(in srgb, currentColor 14%, transparent);
 }
 
@@ -1129,71 +1127,70 @@ a.project-card:focus-visible {
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: .9rem;
+  font-size: .85rem;
 }
 
 #analisis .analysis-card li {
   position: relative;
-  padding: 7px 0;
-  line-height: 1.5;
+  padding: 5px 0;
+  line-height: 1.4;
 }
 
 #analisis .analysis-card li + li {
-  border-top: 1px solid color-mix(in srgb, currentColor 9%, transparent);
+  border-top: 1px solid color-mix(in srgb, currentColor 8%, transparent);
 }
 
-/* Daftar bernomor (Tujuan Sistem): lingkaran bergaris kecil */
+/* Daftar bernomor (Tujuan Sistem) */
 #analisis .analysis-card ol { counter-reset: item; }
 
 #analisis .analysis-card ol > li {
   counter-increment: item;
-  padding-left: 32px;
+  padding-left: 26px;
 }
 
 #analisis .analysis-card ol > li::before {
   content: counter(item);
   position: absolute;
   left: 0;
-  top: 8px;
-  width: 22px;
-  height: 22px;
+  top: 6px;
+  width: 18px;
+  height: 18px;
   display: grid;
   place-items: center;
-  border: 1.25px solid currentColor;
+  border: 1px solid currentColor;
   border-radius: 50%;
-  font-size: .7rem;
+  font-size: .65rem;
   font-weight: 600;
   line-height: 1;
 }
 
-/* Daftar bullet (Pengguna & Nonfungsional) */
+/* Daftar bullet (Pengguna & Nonfungsional): nama dan deskripsi satu alur */
 #analisis .analysis-card ul > li {
-  padding-left: 15px;
+  padding-left: 12px;
 }
 
 #analisis .analysis-card ul > li::before {
   content: "";
   position: absolute;
-  left: 1px;
-  top: 1.15em;
-  width: 5px;
-  height: 5px;
+  left: 0;
+  top: 1em;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
   background: currentColor;
 }
 
-#analisis .analysis-card ul > li > strong {
-  display: block;
-  margin-bottom: 1px;
-}
-
 #analisis .analysis-card ul > li > span {
-  display: block;
-  font-size: .85rem;
-  opacity: .82;
+  opacity: .85;
 }
 
-/* Kartu 3 (Kebutuhan Fungsional): kode SRS sebagai label bergaris kecil */
+/* Kartu 3 (Kebutuhan Fungsional): 2 kolom, kode SRS sebagai label kecil */
+#analisis .analysis-card:nth-child(3) ol {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 14px;
+}
+
 #analisis .analysis-card:nth-child(3) ol > li {
   display: flex;
   align-items: center;
@@ -1205,30 +1202,37 @@ a.project-card:focus-visible {
   display: none;
 }
 
+#analisis .analysis-card:nth-child(3) ol > li:nth-child(2) {
+  border-top: 0;
+}
+
 #analisis .analysis-card:nth-child(3) ol > li > strong {
   flex: 0 0 auto;
-  min-width: 76px;
-  padding: 2px 9px;
-  margin-right: 10px;
-  border: 1.25px solid currentColor;
+  padding: 1px 7px;
+  margin-right: 8px;
+  border: 1px solid currentColor;
   border-radius: 999px;
-  font-size: .72rem;
-  text-align: center;
+  font-size: .68rem;
+  white-space: nowrap;
 }
 
 #analisis .analysis-card:nth-child(3) ol > li > span {
-  font-size: .9rem;
-  font-weight: 500;
+  font-size: .82rem;
+  line-height: 1.3;
 }
 
 /* Responsif */
 @media (max-width: 860px) {
   #analisis .analysis-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
-    margin-top: 22px;
   }
-  #analisis .analysis-card {
-    padding: 16px 16px 12px;
+}
+
+@media (max-width: 480px) {
+  #analisis .analysis-card:nth-child(3) ol {
+    grid-template-columns: 1fr;
+  }
+  #analisis .analysis-card:nth-child(3) ol > li:nth-child(2) {
+    border-top: 1px solid color-mix(in srgb, currentColor 8%, transparent);
   }
 }
