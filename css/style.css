@@ -930,3 +930,156 @@ a.project-card:focus-visible {
   }
 }
 
+/* ==== Perbaikan tampilan #analisis (tanpa mengubah warna) ==== */
+
+#analisis .analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 44px;
+  align-items: stretch;
+}
+
+#analisis .analysis-card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 32px 28px;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 10px 28px rgba(0, 0, 0, .06);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+#analisis .analysis-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .05), 0 16px 36px rgba(0, 0, 0, .10);
+}
+
+/* Judul & deskripsi kartu */
+#analisis .analysis-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+}
+
+#analisis .analysis-card > p {
+  margin: 0 0 20px;
+  padding-bottom: 18px;
+  font-size: .95rem;
+  line-height: 1.6;
+  opacity: .78;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+}
+
+/* Reset list */
+#analisis .analysis-card ol,
+#analisis .analysis-card ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#analisis .analysis-card li {
+  position: relative;
+  padding: 12px 0;
+  line-height: 1.65;
+}
+
+#analisis .analysis-card li + li {
+  border-top: 1px solid color-mix(in srgb, currentColor 9%, transparent);
+}
+
+/* Daftar bernomor (Tujuan Sistem): lingkaran bergaris */
+#analisis .analysis-card ol { counter-reset: item; }
+
+#analisis .analysis-card ol > li {
+  counter-increment: item;
+  padding-left: 46px;
+}
+
+#analisis .analysis-card ol > li::before {
+  content: counter(item);
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font-size: .8rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Daftar bullet (Pengguna & Nonfungsional) */
+#analisis .analysis-card ul > li {
+  padding-left: 20px;
+}
+
+#analisis .analysis-card ul > li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 1.3em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+#analisis .analysis-card ul > li > strong {
+  display: block;
+  margin-bottom: 2px;
+}
+
+#analisis .analysis-card ul > li > span {
+  display: block;
+  font-size: .94rem;
+  opacity: .82;
+}
+
+/* Kartu 3 (Kebutuhan Fungsional): kode SRS sebagai label bergaris */
+#analisis .analysis-card:nth-child(3) ol > li {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding-left: 0;
+  font-size: 0;            /* menyembunyikan tanda "—" di antara kode dan nama */
+}
+
+#analisis .analysis-card:nth-child(3) ol > li::before {
+  display: none;
+}
+
+#analisis .analysis-card:nth-child(3) ol > li > strong {
+  flex: 0 0 auto;
+  min-width: 92px;
+  padding: 4px 12px;
+  margin-right: 14px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  font-size: .8rem;
+  letter-spacing: .02em;
+  text-align: center;
+}
+
+#analisis .analysis-card:nth-child(3) ol > li > span {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Responsif */
+@media (max-width: 860px) {
+  #analisis .analysis-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 32px;
+  }
+  #analisis .analysis-card {
+    padding: 24px 22px 20px;
+    border-radius: 14px;
+  }
+}
