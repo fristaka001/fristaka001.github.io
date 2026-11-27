@@ -4,10 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SIAGA (Magang) | Fristaka Putri Prawahyu</title>
-  <meta name="description" content="Studi kasus SIAGA pada tahap magang di Diskominfo Kabupaten Jombang: analisis kebutuhan pengguna, analisis proses bisnis, dan perancangan sistem.">
+  <meta name="description" content="Studi kasus SIAGA pada tahap magang di Diskominfo Kabupaten Jombang: analisis kebutuhan, analisis proses bisnis, evaluasi sistem, dan perancangan sistem.">
 
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/case-study.css">
+
+  <!-- Gaya tambahan untuk elemen baru (tabel, daftar ringkas). Boleh dipindah ke case-study.css -->
+  <style>
+    .table-wrap { overflow-x: auto; margin-top: 1rem; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    .data-table th, .data-table td { border: 1px solid rgba(128,128,128,.3); padding: .6rem .75rem; text-align: left; vertical-align: top; }
+    .data-table thead th { background: rgba(128,128,128,.1); }
+    .data-table td.is-fill { font-style: italic; opacity: .75; }
+    .sub-block { margin-top: 2.25rem; }
+    .sub-block > h3 { margin-bottom: .5rem; }
+    .process-note { margin-top: .75rem; }
+    .process-list { display: grid; gap: 1.5rem; margin-top: 1.5rem; }
+    .compact-list { margin: .5rem 0 0; padding-left: 1.25rem; }
+  </style>
 </head>
 
 <body>
@@ -38,7 +52,7 @@
 
         <div class="hero-buttons">
           <a class="btn btn-primary" href="#analisis"
-             data-en="View User Requirements Analysis"
+             data-en="View Requirements Analysis"
              data-id="Lihat Analisis Kebutuhan">Lihat Analisis Kebutuhan</a>
           <a class="btn btn-outline" href="#ringkasan"
              data-en="Project Overview"
@@ -47,7 +61,7 @@
       </div>
     </section>
 
-    <!-- ===================== C. RINGKASAN PROYEK ===================== -->
+    <!-- ===================== 1. RINGKASAN PROYEK ===================== -->
     <section id="ringkasan" class="section-alt">
       <div class="container">
         <p class="section-label"
@@ -55,11 +69,14 @@
            data-id="Ringkasan">Ringkasan</p>
         <h2 data-en="Project Overview"
             data-id="Ringkasan Proyek">Ringkasan Proyek</h2>
+        <p class="section-intro"
+           data-en="Project identity, institution, internship context, work focus, and workflow."
+           data-id="Identitas proyek, instansi, konteks magang, fokus pekerjaan, dan alur pengerjaan.">Identitas proyek, instansi, konteks magang, fokus pekerjaan, dan alur pengerjaan.</p>
 
         <dl class="summary-grid">
           <div class="summary-card">
-            <dt data-en="Project Name" data-id="Nama Proyek">Nama Proyek</dt>
-            <dd>SIAGA</dd>
+            <dt data-en="Project" data-id="Proyek">Proyek</dt>
+            <dd>SIAGA &mdash; Sistem Informasi Agenda Kegiatan Dinas</dd>
           </div>
           <div class="summary-card">
             <dt data-en="Institution" data-id="Instansi">Instansi</dt>
@@ -67,17 +84,13 @@
           </div>
           <div class="summary-card">
             <dt data-en="Context" data-id="Konteks">Konteks</dt>
-            <dd data-en="Internship" data-id="Magang">Magang</dd>
+            <dd data-en="Internship, Informatics Applications division"
+                data-id="Magang, bidang Aplikasi Informatika">Magang, bidang Aplikasi Informatika</dd>
           </div>
           <div class="summary-card">
             <dt data-en="Work Focus" data-id="Fokus Pekerjaan">Fokus Pekerjaan</dt>
-            <dd data-en="User requirements analysis, business process analysis, and system design"
-                data-id="Analisis kebutuhan pengguna, analisis proses bisnis, dan perancangan sistem">Analisis kebutuhan pengguna, analisis proses bisnis, dan perancangan sistem</dd>
-          </div>
-          <div class="summary-card">
-            <dt data-en="Deliverables" data-id="Hasil Pekerjaan">Hasil Pekerjaan</dt>
-            <dd data-en="Analysis documents and system design diagrams (see the Deliverables section)"
-                data-id="Dokumen analisis dan diagram perancangan sistem (lihat bagian Hasil Pekerjaan)">Dokumen analisis dan diagram perancangan sistem (lihat bagian Hasil Pekerjaan)</dd>
+            <dd data-en="Requirements analysis, business process analysis, system evaluation, and system design"
+                data-id="Analisis kebutuhan, analisis proses bisnis, evaluasi sistem, dan perancangan sistem">Analisis kebutuhan, analisis proses bisnis, evaluasi sistem, dan perancangan sistem</dd>
           </div>
         </dl>
 
@@ -89,46 +102,48 @@
             data-en-aria="Project workflow"
             data-id-aria="Alur pengerjaan proyek">
           <li>
-            <h3 data-en="User Requirements Analysis"
-                data-id="Analisis Kebutuhan Pengguna">Analisis Kebutuhan Pengguna</h3>
-            <p data-en="Identifying the background, problems, objectives, and system user needs."
-               data-id="Mengidentifikasi latar belakang, permasalahan, tujuan, dan kebutuhan pengguna sistem.">Mengidentifikasi latar belakang, permasalahan, tujuan, dan kebutuhan pengguna sistem.</p>
+            <h3 data-en="Requirements Analysis" data-id="Analisis Kebutuhan">Analisis Kebutuhan</h3>
+            <p data-en="Business background, problems, objectives, scope, and users."
+               data-id="Latar belakang, masalah, tujuan, ruang lingkup, dan pengguna.">Latar belakang, masalah, tujuan, ruang lingkup, dan pengguna.</p>
           </li>
           <li>
-            <h3 data-en="Business Process Analysis"
-                data-id="Analisis Proses Bisnis">Analisis Proses Bisnis</h3>
-            <p data-en="Analyzing existing business processes using BPMN diagrams."
-               data-id="Menganalisis proses bisnis yang sedang berjalan menggunakan diagram BPMN.">Menganalisis proses bisnis yang sedang berjalan menggunakan diagram BPMN.</p>
+            <h3 data-en="Business Process Analysis" data-id="Analisis Proses Bisnis">Analisis Proses Bisnis</h3>
+            <p data-en="Mapping existing processes in four BPMN diagrams."
+               data-id="Memetakan proses berjalan dalam empat diagram BPMN.">Memetakan proses berjalan dalam empat diagram BPMN.</p>
           </li>
           <li>
-            <h3 data-en="System Design"
-                data-id="Perancangan Sistem">Perancangan Sistem</h3>
-            <p data-en="Preparing the class diagram, use case diagram, and menu structure."
-               data-id="Menyusun class diagram, use case diagram, dan struktur menu.">Menyusun class diagram, use case diagram, dan struktur menu.</p>
+            <h3 data-en="System Evaluation" data-id="Evaluasi Sistem">Evaluasi Sistem</h3>
+            <p data-en="PIECES and KANO analysis, then system requirements."
+               data-id="Analisis PIECES dan KANO, lalu kebutuhan sistem.">Analisis PIECES dan KANO, lalu kebutuhan sistem.</p>
+          </li>
+          <li>
+            <h3 data-en="System Design" data-id="Perancangan Sistem">Perancangan Sistem</h3>
+            <p data-en="Use case diagram, class diagram, and menu structure."
+               data-id="Use case diagram, class diagram, dan struktur menu.">Use case diagram, class diagram, dan struktur menu.</p>
           </li>
           <li class="is-later">
             <h3>
               <span data-en="Implementation" data-id="Implementasi">Implementasi</span>
               <span class="flow-badge" data-en="Next stage" data-id="Tahap berikutnya">Tahap berikutnya</span>
             </h3>
-            <p data-en="Carried out during the final project stage, not during the internship."
-               data-id="Dilaksanakan pada tahap Tugas Akhir, bukan pada tahap magang.">Dilaksanakan pada tahap Tugas Akhir, bukan pada tahap magang.</p>
+            <p data-en="Carried out in the final project, not during the internship."
+               data-id="Dikerjakan pada Tugas Akhir, bukan saat magang.">Dikerjakan pada Tugas Akhir, bukan saat magang.</p>
           </li>
         </ol>
       </div>
     </section>
 
-    <!-- ===================== D. ANALISIS KEBUTUHAN PENGGUNA ===================== -->
-    <section id="analisis" class="section-alt">
+    <!-- ===================== 2. ANALISIS KEBUTUHAN DAN KONDISI BISNIS ===================== -->
+    <section id="analisis">
       <div class="container">
         <p class="section-label"
            data-en="Analysis"
            data-id="Analisis">Analisis</p>
-        <h2 data-en="User Requirements Analysis"
-            data-id="Analisis Kebutuhan Pengguna">Analisis Kebutuhan Pengguna</h2>
+        <h2 data-en="Requirements and Business Condition Analysis"
+            data-id="Analisis Kebutuhan dan Kondisi Bisnis">Analisis Kebutuhan dan Kondisi Bisnis</h2>
         <p class="section-intro"
-           data-en="This section explains the background, problems, objectives, and user needs that formed the basis for designing SIAGA."
-           data-id="Bagian ini menjelaskan latar belakang, permasalahan, tujuan, dan kebutuhan pengguna yang menjadi dasar perancangan SIAGA.">Bagian ini menjelaskan latar belakang, permasalahan, tujuan, dan kebutuhan pengguna yang menjadi dasar perancangan SIAGA.</p>
+           data-en="The business context, problems, objectives, scope, and users that formed the basis for designing SIAGA."
+           data-id="Konteks bisnis, masalah, tujuan, ruang lingkup, dan pengguna yang menjadi dasar perancangan SIAGA.">Konteks bisnis, masalah, tujuan, ruang lingkup, dan pengguna yang menjadi dasar perancangan SIAGA.</p>
 
         <div class="prose">
           <h3 data-en="Background" data-id="Latar Belakang">Latar Belakang</h3>
@@ -138,51 +153,242 @@
                data-id="[Isi di sini: jelaskan konteks kebutuhan sistem agenda kegiatan dinas di Diskominfo Kabupaten Jombang sesuai kondisi yang sebenarnya.]">[Isi di sini: jelaskan konteks kebutuhan sistem agenda kegiatan dinas di Diskominfo Kabupaten Jombang sesuai kondisi yang sebenarnya.]</p>
           </div>
 
-          <h3 class="block-title" data-en="Problem Statement" data-id="Permasalahan">Permasalahan</h3>
+          <h3 class="block-title" data-en="Problem Statement" data-id="Rumusan Masalah">Rumusan Masalah</h3>
           <div class="fill-in">
             <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
-            <p data-en="[Fill in here: explain the observed problems, based only on information or documents you actually have.]"
-               data-id="[Isi di sini: jelaskan permasalahan yang diamati, hanya berdasarkan informasi atau dokumen yang benar-benar Anda miliki.]">[Isi di sini: jelaskan permasalahan yang diamati, hanya berdasarkan informasi atau dokumen yang benar-benar Anda miliki.]</p>
+            <p data-en="[Fill in here: state the problems as questions or statements, based only on information or documents you actually have.]"
+               data-id="[Isi di sini: tuliskan rumusan masalah, hanya berdasarkan informasi atau dokumen yang benar-benar Anda miliki.]">[Isi di sini: tuliskan rumusan masalah, hanya berdasarkan informasi atau dokumen yang benar-benar Anda miliki.]</p>
           </div>
         </div>
 
         <div class="analysis-grid">
           <article class="analysis-card">
-            <h3 data-en="System Objectives" data-id="Tujuan Sistem">Tujuan Sistem</h3>
-            <p data-en="The objectives to be achieved through the design of SIAGA."
-               data-id="Tujuan yang ingin dicapai melalui perancangan SIAGA.">Tujuan yang ingin dicapai melalui perancangan SIAGA.</p>
+            <h3 data-en="Objectives" data-id="Tujuan">Tujuan</h3>
             <ol>
               <li data-en="Design a web-based information system to support integrated management of official activity agendas."
                   data-id="Merancang sistem informasi berbasis web yang dapat mendukung pengelolaan agenda kegiatan dinas secara terintegrasi.">Merancang sistem informasi berbasis web yang dapat mendukung pengelolaan agenda kegiatan dinas secara terintegrasi.</li>
-              <li data-en="Identify and analyze functional and non-functional system requirements based on user needs at Diskominfo Kabupaten Jombang."
+              <li data-en="Identify and analyze functional and non-functional requirements based on user needs at Diskominfo Kabupaten Jombang."
                   data-id="Mengidentifikasi dan menganalisis kebutuhan fungsional serta nonfungsional sistem berdasarkan kebutuhan pengguna di Dinas Komunikasi dan Informatika Kabupaten Jombang.">Mengidentifikasi dan menganalisis kebutuhan fungsional serta nonfungsional sistem berdasarkan kebutuhan pengguna di Dinas Komunikasi dan Informatika Kabupaten Jombang.</li>
-              <li data-en="Design system features that support recording, schedule management, monitoring, and reporting of official activities."
+              <li data-en="Design features that support recording, schedule management, monitoring, and reporting of official activities."
                   data-id="Merancang fitur sistem yang mendukung proses pencatatan, pengelolaan jadwal, pemantauan, dan penyajian laporan agenda kegiatan dinas.">Merancang fitur sistem yang mendukung proses pencatatan, pengelolaan jadwal, pemantauan, dan penyajian laporan agenda kegiatan dinas.</li>
             </ol>
           </article>
 
           <article class="analysis-card">
-            <h3 data-en="User Requirements" data-id="Kebutuhan Pengguna">Kebutuhan Pengguna</h3>
+            <h3 data-en="Scope" data-id="Ruang Lingkup">Ruang Lingkup</h3>
+            <p data-en="Adjust this list to match your actual project scope."
+               data-id="Sesuaikan daftar ini dengan ruang lingkup proyek yang sebenarnya.">Sesuaikan daftar ini dengan ruang lingkup proyek yang sebenarnya.</p>
+            <ul>
+              <li data-en="Web-based system for official activity agenda management."
+                  data-id="Sistem berbasis web untuk pengelolaan agenda kegiatan dinas.">Sistem berbasis web untuk pengelolaan agenda kegiatan dinas.</li>
+              <li data-en="Five user roles: Central Admin, Agency Admin, Secretary, Head of Agency, and Employee."
+                  data-id="Lima peran pengguna: Admin Pusat, Admin Dinas, Sekretaris, Kepala Dinas, dan Pegawai.">Lima peran pengguna: Admin Pusat, Admin Dinas, Sekretaris, Kepala Dinas, dan Pegawai.</li>
+              <li data-en="Six main functions: login, agency profile, agency administrators, agendas, employee data, and reports."
+                  data-id="Enam fungsi utama: login, profil dinas, admin dinas, agenda, data pegawai, dan laporan.">Enam fungsi utama: login, profil dinas, admin dinas, agenda, data pegawai, dan laporan.</li>
+              <li data-en="Internship stage covers analysis and design only; implementation is outside this stage."
+                  data-id="Tahap magang mencakup analisis dan perancangan; implementasi berada di luar tahap ini.">Tahap magang mencakup analisis dan perancangan; implementasi berada di luar tahap ini.</li>
+            </ul>
+          </article>
+
+          <article class="analysis-card">
+            <h3 data-en="Business Users" data-id="Business User">Business User</h3>
             <p data-en="SIAGA is designed for five user roles, each with different responsibilities."
                data-id="SIAGA dirancang untuk lima jenis pengguna dengan peran dan tanggung jawab yang berbeda.">SIAGA dirancang untuk lima jenis pengguna dengan peran dan tanggung jawab yang berbeda.</p>
             <ul>
-              <li><strong>Admin Pusat:</strong> <span data-en="Manage master data, including agency profiles and agency administrator accounts, and view all agency agendas."
+              <li><strong>Admin Pusat:</strong> <span data-en="Manages master data, including agency profiles and agency administrator accounts, and views all agency agendas."
                   data-id="Mengelola data master sistem, seperti profil dinas dan data admin dinas, serta melihat seluruh agenda dinas.">Mengelola data master sistem, seperti profil dinas dan data admin dinas, serta melihat seluruh agenda dinas.</span></li>
-              <li><strong>Admin Dinas:</strong> <span data-en="Manage agendas and employee data, and arrange schedules and task distribution for their respective agency."
+              <li><strong>Admin Dinas:</strong> <span data-en="Manages agendas and employee data, and arranges schedules and task distribution for their agency."
                   data-id="Mengelola agenda dan data pegawai, serta mengatur jadwal dan distribusi tugas pada dinas masing-masing.">Mengelola agenda dan data pegawai, serta mengatur jadwal dan distribusi tugas pada dinas masing-masing.</span></li>
-              <li><strong>Sekretaris:</strong> <span data-en="Review incoming agendas or documents and provide initial approval before forwarding them to the Head of Agency."
+              <li><strong>Sekretaris:</strong> <span data-en="Reviews incoming agendas or documents and gives initial approval before forwarding them to the Head of Agency."
                   data-id="Memeriksa agenda atau dokumen yang masuk dan memberikan persetujuan awal sebelum diteruskan kepada Kepala Dinas.">Memeriksa agenda atau dokumen yang masuk dan memberikan persetujuan awal sebelum diteruskan kepada Kepala Dinas.</span></li>
-              <li><strong>Kepala Dinas:</strong> <span data-en="Approve agendas and important documents, and monitor agency activities through the system."
+              <li><strong>Kepala Dinas:</strong> <span data-en="Approves agendas and important documents, and monitors agency activities through the system."
                   data-id="Menyetujui agenda dan dokumen penting serta memantau aktivitas dinas melalui sistem.">Menyetujui agenda dan dokumen penting serta memantau aktivitas dinas melalui sistem.</span></li>
-              <li><strong>Pegawai:</strong> <span data-en="View agency information through the system."
+              <li><strong>Pegawai:</strong> <span data-en="Views agency information through the system."
                   data-id="Melihat informasi dinas melalui sistem.">Melihat informasi dinas melalui sistem.</span></li>
             </ul>
           </article>
 
           <article class="analysis-card">
+            <h3 data-en="Business Data, Tools, and Rules" data-id="Business Data, Business Tool, dan Business Rule">Business Data, Business Tool, dan Business Rule</h3>
+            <p data-en="Include only what is relevant to your project."
+               data-id="Cantumkan hanya yang relevan dengan proyek Anda.">Cantumkan hanya yang relevan dengan proyek Anda.</p>
+            <ul>
+              <li><strong>Business Data:</strong> <span data-en="Agency profiles, agency administrator accounts, agendas, employee data, and reports."
+                  data-id="Profil dinas, akun admin dinas, agenda kegiatan, data pegawai, dan laporan.">Profil dinas, akun admin dinas, agenda kegiatan, data pegawai, dan laporan.</span></li>
+              <li><strong>Business Tool:</strong> <span class="is-fill" data-en="[Fill in: tools currently used to record agendas, e.g. documents, messaging apps, or paper records.]"
+                  data-id="[Isi: alat yang saat ini dipakai untuk mencatat agenda, misalnya dokumen, aplikasi pesan, atau catatan kertas.]">[Isi: alat yang saat ini dipakai untuk mencatat agenda, misalnya dokumen, aplikasi pesan, atau catatan kertas.]</span></li>
+              <li><strong>Business Rule:</strong> <span data-en="Access rights follow user roles; agendas or documents are reviewed by the Secretary before approval by the Head of Agency. [Add other rules you found.]"
+                  data-id="Hak akses mengikuti peran pengguna; agenda atau dokumen diperiksa Sekretaris sebelum disetujui Kepala Dinas. [Tambahkan aturan lain yang Anda temukan.]">Hak akses mengikuti peran pengguna; agenda atau dokumen diperiksa Sekretaris sebelum disetujui Kepala Dinas. [Tambahkan aturan lain yang Anda temukan.]</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 3. ANALISIS PROSES BISNIS YANG SEDANG BERJALAN ===================== -->
+    <section id="proses-bisnis" class="section-alt">
+      <div class="container">
+        <p class="section-label"
+           data-en="Business Process Analysis"
+           data-id="Analisis Proses Bisnis">Analisis Proses Bisnis</p>
+        <h2 data-en="Current Business Process Analysis"
+            data-id="Analisis Proses Bisnis yang Sedang Berjalan">Analisis Proses Bisnis yang Sedang Berjalan</h2>
+        <p class="section-intro"
+           data-en="The following BPMN diagrams illustrate the existing agenda management processes at the Jombang Communication and Informatics Office before SIAGA was designed."
+           data-id="Diagram BPMN berikut menggambarkan proses pengelolaan agenda yang sedang berjalan di Dinas Komunikasi dan Informatika Kabupaten Jombang sebelum SIAGA dirancang.">Diagram BPMN berikut menggambarkan proses pengelolaan agenda yang sedang berjalan di Dinas Komunikasi dan Informatika Kabupaten Jombang sebelum SIAGA dirancang.</p>
+
+        <div class="business-process-grid">
+          <figure class="figure">
+            <div class="figure-media">
+              <img src="images/siaga-bpmn-1.png" alt="Diagram BPMN proses bisnis 1"
+                   data-en-alt="BPMN diagram of business process 1" data-id-alt="Diagram BPMN proses bisnis 1">
+            </div>
+            <figcaption data-en="Business Process 1" data-id="Proses Bisnis 1">Proses Bisnis 1</figcaption>
+            <div class="fill-in process-note">
+              <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
+              <p data-en="[Fill in: 1&ndash;2 sentences describing who does what in this process.]"
+                 data-id="[Isi: 1&ndash;2 kalimat tentang siapa melakukan apa pada proses ini.]">[Isi: 1&ndash;2 kalimat tentang siapa melakukan apa pada proses ini.]</p>
+            </div>
+          </figure>
+
+          <figure class="figure">
+            <div class="figure-media">
+              <img src="images/siaga-bpmn-2.png" alt="Diagram BPMN proses bisnis 2"
+                   data-en-alt="BPMN diagram of business process 2" data-id-alt="Diagram BPMN proses bisnis 2">
+            </div>
+            <figcaption data-en="Business Process 2" data-id="Proses Bisnis 2">Proses Bisnis 2</figcaption>
+            <div class="fill-in process-note">
+              <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
+              <p data-en="[Fill in: 1&ndash;2 sentences describing who does what in this process.]"
+                 data-id="[Isi: 1&ndash;2 kalimat tentang siapa melakukan apa pada proses ini.]">[Isi: 1&ndash;2 kalimat tentang siapa melakukan apa pada proses ini.]</p>
+            </div>
+          </figure>
+
+          <figure class="figure">
+            <div class="figure-media">
+              <img src="images/siaga-bpmn-3.png" alt="Diagram BPMN proses bisnis 3"
+                   data-en-alt="BPMN diagram of business process 3" data-id-alt="Diagram BPMN proses bisnis 3">
+            </div>
+            <figcaption data-en="Business Process 3" data-id="Proses Bisnis 3">Proses Bisnis 3</figcaption>
+            <div class="fill-in process-note">
+              <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
+              <p data-en="[Fill in: 1&ndash;2 sentences describing who does what in this process.]"
+                 data-id="[Isi: 1&ndash;2 kalimat tentang siapa melakukan apa pada proses ini.]">[Isi: 1&ndash;2 kalimat tentang siapa melakukan apa pada proses ini.]</p>
+            </div>
+          </figure>
+
+          <figure class="figure">
+            <div class="figure-media">
+              <img src="images/siaga-bpmn-4.png" alt="Diagram BPMN proses bisnis 4"
+                   data-en-alt="BPMN diagram of business process 4" data-id-alt="Diagram BPMN proses bisnis 4">
+            </div>
+            <figcaption data-en="Business Process 4" data-id="Proses Bisnis 4">Proses Bisnis 4</figcaption>
+            <div class="fill-in process-note">
+              <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
+              <p data-en="[Fill in: 1&ndash;2 sentences describing who does what in this process.]"
+                 data-id="[Isi: 1&ndash;2 kalimat tentang siapa melakukan apa pada proses ini.]">[Isi: 1&ndash;2 kalimat tentang siapa melakukan apa pada proses ini.]</p>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 4. EVALUASI DAN ANALISIS KEBUTUHAN SISTEM ===================== -->
+    <section id="evaluasi">
+      <div class="container">
+        <p class="section-label"
+           data-en="Evaluation"
+           data-id="Evaluasi">Evaluasi</p>
+        <h2 data-en="System Evaluation and Requirements Analysis"
+            data-id="Evaluasi dan Analisis Kebutuhan Sistem">Evaluasi dan Analisis Kebutuhan Sistem</h2>
+        <p class="section-intro"
+           data-en="Evaluating the current condition with PIECES and KANO, then defining the system objectives and requirements."
+           data-id="Mengevaluasi kondisi saat ini dengan PIECES dan KANO, lalu merumuskan tujuan dan kebutuhan sistem.">Mengevaluasi kondisi saat ini dengan PIECES dan KANO, lalu merumuskan tujuan dan kebutuhan sistem.</p>
+
+        <!-- PIECES -->
+        <div class="sub-block" id="pieces">
+          <h3 data-en="PIECES Analysis" data-id="Analisis PIECES">Analisis PIECES</h3>
+          <p data-en="Fill each row with findings from your own observation of the existing process."
+             data-id="Isi setiap baris dengan temuan dari pengamatan Anda terhadap proses yang berjalan.">Isi setiap baris dengan temuan dari pengamatan Anda terhadap proses yang berjalan.</p>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th data-en="Aspect" data-id="Aspek">Aspek</th>
+                  <th data-en="Current Condition and Problem" data-id="Kondisi dan Masalah Saat Ini">Kondisi dan Masalah Saat Ini</th>
+                  <th data-en="Proposed Solution in SIAGA" data-id="Solusi pada SIAGA">Solusi pada SIAGA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Performance</th><td class="is-fill">[Isi]</td><td class="is-fill">[Isi]</td></tr>
+                <tr><th scope="row">Information</th><td class="is-fill">[Isi]</td><td class="is-fill">[Isi]</td></tr>
+                <tr><th scope="row">Economics</th><td class="is-fill">[Isi]</td><td class="is-fill">[Isi]</td></tr>
+                <tr><th scope="row">Control</th><td class="is-fill">[Isi]</td><td class="is-fill">[Isi]</td></tr>
+                <tr><th scope="row">Efficiency</th><td class="is-fill">[Isi]</td><td class="is-fill">[Isi]</td></tr>
+                <tr><th scope="row">Service</th><td class="is-fill">[Isi]</td><td class="is-fill">[Isi]</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- KANO -->
+        <div class="sub-block" id="kano">
+          <h3 data-en="KANO Analysis" data-id="Analisis KANO">Analisis KANO</h3>
+          <p data-en="Classify SIAGA features based on your actual KANO results (e.g. questionnaire or interview)."
+             data-id="Kelompokkan fitur SIAGA berdasarkan hasil KANO yang benar-benar Anda peroleh (misalnya kuesioner atau wawancara).">Kelompokkan fitur SIAGA berdasarkan hasil KANO yang benar-benar Anda peroleh (misalnya kuesioner atau wawancara).</p>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th data-en="Category" data-id="Kategori">Kategori</th>
+                  <th data-en="Features" data-id="Fitur">Fitur</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Must-be</th><td class="is-fill">[Isi]</td></tr>
+                <tr><th scope="row">One-dimensional</th><td class="is-fill">[Isi]</td></tr>
+                <tr><th scope="row">Attractive</th><td class="is-fill">[Isi]</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- BUSINESS EVALUATION AND SOLUTION -->
+        <div class="sub-block" id="evaluasi-solusi">
+          <h3 data-en="Business Evaluation and Solution" data-id="Business Evaluation and Solution">Business Evaluation and Solution</h3>
+          <div class="fill-in">
+            <span class="fill-tag" data-en="Fill in" data-id="Isi">Isi</span>
+            <p data-en="[Fill in: summarize the evaluation results from PIECES and KANO, then explain how SIAGA addresses them.]"
+               data-id="[Isi: ringkas hasil evaluasi dari PIECES dan KANO, lalu jelaskan bagaimana SIAGA menjawabnya.]">[Isi: ringkas hasil evaluasi dari PIECES dan KANO, lalu jelaskan bagaimana SIAGA menjawabnya.]</p>
+          </div>
+        </div>
+
+        <div class="analysis-grid sub-block">
+          <article class="analysis-card">
+            <h3 data-en="System Objectives" data-id="Tujuan Sistem">Tujuan Sistem</h3>
+            <ol>
+              <li data-en="Support integrated management of official activity agendas."
+                  data-id="Mendukung pengelolaan agenda kegiatan dinas secara terintegrasi.">Mendukung pengelolaan agenda kegiatan dinas secara terintegrasi.</li>
+              <li data-en="Support recording, schedule management, and monitoring of activities."
+                  data-id="Mendukung pencatatan, pengelolaan jadwal, dan pemantauan kegiatan.">Mendukung pencatatan, pengelolaan jadwal, dan pemantauan kegiatan.</li>
+              <li data-en="Present activity agenda reports quickly and validly."
+                  data-id="Menyajikan laporan agenda kegiatan secara cepat dan valid.">Menyajikan laporan agenda kegiatan secara cepat dan valid.</li>
+            </ol>
+          </article>
+
+          <article class="analysis-card">
+            <h3 data-en="User Requirements" data-id="Kebutuhan Pengguna">Kebutuhan Pengguna</h3>
+            <ul>
+              <li><strong>Admin Pusat:</strong> <span data-en="Manage master data and view all agency agendas." data-id="Mengelola data master dan melihat seluruh agenda dinas.">Mengelola data master dan melihat seluruh agenda dinas.</span></li>
+              <li><strong>Admin Dinas:</strong> <span data-en="Manage agendas, employee data, schedules, and task distribution." data-id="Mengelola agenda, data pegawai, jadwal, dan distribusi tugas.">Mengelola agenda, data pegawai, jadwal, dan distribusi tugas.</span></li>
+              <li><strong>Sekretaris:</strong> <span data-en="Review and give initial approval to incoming agendas or documents." data-id="Memeriksa dan memberi persetujuan awal agenda atau dokumen masuk.">Memeriksa dan memberi persetujuan awal agenda atau dokumen masuk.</span></li>
+              <li><strong>Kepala Dinas:</strong> <span data-en="Approve agendas and documents, and monitor activities." data-id="Menyetujui agenda dan dokumen, serta memantau aktivitas.">Menyetujui agenda dan dokumen, serta memantau aktivitas.</span></li>
+              <li><strong>Pegawai:</strong> <span data-en="View agency information." data-id="Melihat informasi dinas.">Melihat informasi dinas.</span></li>
+            </ul>
+          </article>
+
+          <article class="analysis-card">
             <h3 data-en="Functional Requirements" data-id="Kebutuhan Fungsional">Kebutuhan Fungsional</h3>
-            <p data-en="The main functions identified for the SIAGA system."
-               data-id="Fungsi utama yang diidentifikasi untuk sistem SIAGA.">Fungsi utama yang diidentifikasi untuk sistem SIAGA.</p>
             <ol>
               <li><span data-en="Login" data-id="Login">Login</span></li>
               <li><span data-en="Manage Agency Profile" data-id="Kelola Profil Dinas">Kelola Profil Dinas</span></li>
@@ -195,99 +401,42 @@
 
           <article class="analysis-card">
             <h3 data-en="Non-Functional Requirements" data-id="Kebutuhan Nonfungsional">Kebutuhan Nonfungsional</h3>
-            <p data-en="Quality requirements and constraints identified for the system."
-               data-id="Persyaratan kualitas dan batasan yang diidentifikasi untuk sistem.">Persyaratan kualitas dan batasan yang diidentifikasi untuk sistem.</p>
             <ul>
-              <li><strong data-en="Security:" data-id="Keamanan:">Keamanan:</strong> <span data-en="Access is managed according to each user's role."
-                  data-id="Hak akses diatur berdasarkan peran masing-masing pengguna.">Hak akses diatur berdasarkan peran masing-masing pengguna.</span></li>
-              <li><strong data-en="Reliability:" data-id="Keandalan:">Keandalan:</strong> <span data-en="A centralized database is used to manage different data and support report preparation."
-                  data-id="Basis data terpusat digunakan untuk mengelola berbagai data dan mendukung penyusunan laporan.">Basis data terpusat digunakan untuk mengelola berbagai data dan mendukung penyusunan laporan.</span></li>
-              <li><strong data-en="Transaction Speed:" data-id="Kecepatan Transaksi:">Kecepatan Transaksi:</strong> <span data-en="The system is designed to process data and generate reports quickly and validly."
-                  data-id="Sistem dirancang untuk memproses data dan menghasilkan laporan secara cepat dan valid.">Sistem dirancang untuk memproses data dan menghasilkan laporan secara cepat dan valid.</span></li>
-              <li><strong data-en="User Interface:" data-id="Antarmuka Pengguna:">Antarmuka Pengguna:</strong> <span data-en="The interface and language are easy for users to understand."
-                  data-id="Tampilan dan bahasa yang digunakan mudah dipahami oleh pengguna.">Tampilan dan bahasa yang digunakan mudah dipahami oleh pengguna.</span></li>
-              <li><strong data-en="Maintenance:" data-id="Pemeliharaan:">Pemeliharaan:</strong> <span data-en="The system's operational functions are designed not to require special maintenance."
-                  data-id="Fungsi operasional sistem dirancang agar tidak memerlukan pemeliharaan khusus.">Fungsi operasional sistem dirancang agar tidak memerlukan pemeliharaan khusus.</span></li>
+              <li><strong data-en="Security:" data-id="Keamanan:">Keamanan:</strong> <span data-en="Access is managed according to each user's role." data-id="Hak akses diatur berdasarkan peran masing-masing pengguna.">Hak akses diatur berdasarkan peran masing-masing pengguna.</span></li>
+              <li><strong data-en="Reliability:" data-id="Keandalan:">Keandalan:</strong> <span data-en="A centralized database manages data and supports report preparation." data-id="Basis data terpusat digunakan untuk mengelola berbagai data dan mendukung penyusunan laporan.">Basis data terpusat digunakan untuk mengelola berbagai data dan mendukung penyusunan laporan.</span></li>
+              <li><strong data-en="Transaction Speed:" data-id="Kecepatan Transaksi:">Kecepatan Transaksi:</strong> <span data-en="Data and reports are processed quickly and validly." data-id="Sistem dirancang untuk memproses data dan menghasilkan laporan secara cepat dan valid.">Sistem dirancang untuk memproses data dan menghasilkan laporan secara cepat dan valid.</span></li>
+              <li><strong data-en="User Interface:" data-id="Antarmuka Pengguna:">Antarmuka Pengguna:</strong> <span data-en="The interface and language are easy to understand." data-id="Tampilan dan bahasa yang digunakan mudah dipahami oleh pengguna.">Tampilan dan bahasa yang digunakan mudah dipahami oleh pengguna.</span></li>
+              <li><strong data-en="Maintenance:" data-id="Pemeliharaan:">Pemeliharaan:</strong> <span data-en="Operational functions are designed not to require special maintenance." data-id="Fungsi operasional sistem dirancang agar tidak memerlukan pemeliharaan khusus.">Fungsi operasional sistem dirancang agar tidak memerlukan pemeliharaan khusus.</span></li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ===================== E. PROSES BISNIS YANG SEDANG BERJALAN ===================== -->
-    <section id="proses-bisnis">
-      <div class="container">
-        <p class="section-label"
-           data-en="Business Process Analysis"
-           data-id="Analisis Proses Bisnis">Analisis Proses Bisnis</p>
-
-        <h2 data-en="Current Business Process"
-            data-id="Proses Bisnis yang Sedang Berjalan">Proses Bisnis yang Sedang Berjalan</h2>
-
-        <p class="section-intro"
-           data-en="The following diagrams illustrate the existing agenda management business processes at the Jombang Communication and Informatics Office before the SIAGA system was designed."
-           data-id="Diagram berikut menggambarkan proses bisnis pengelolaan agenda yang sedang berjalan di Dinas Komunikasi dan Informatika Kabupaten Jombang sebelum sistem SIAGA dirancang.">Diagram berikut menggambarkan proses bisnis pengelolaan agenda yang sedang berjalan di Dinas Komunikasi dan Informatika Kabupaten Jombang sebelum sistem SIAGA dirancang.</p>
-
-        <div class="business-process-grid">
-          <figure class="figure">
-            <div class="figure-media">
-              <img src="images/siaga-bpmn-1.png" alt="Diagram BPMN proses bisnis 1"
-                   data-en-alt="BPMN diagram of business process 1" data-id-alt="Diagram BPMN proses bisnis 1">
-            </div>
-            <figcaption data-en="Business Process 1" data-id="Proses Bisnis 1">Proses Bisnis 1</figcaption>
-          </figure>
-
-          <figure class="figure">
-            <div class="figure-media">
-              <img src="images/siaga-bpmn-2.png" alt="Diagram BPMN proses bisnis 2"
-                   data-en-alt="BPMN diagram of business process 2" data-id-alt="Diagram BPMN proses bisnis 2">
-            </div>
-            <figcaption data-en="Business Process 2" data-id="Proses Bisnis 2">Proses Bisnis 2</figcaption>
-          </figure>
-
-          <figure class="figure">
-            <div class="figure-media">
-              <img src="images/siaga-bpmn-3.png" alt="Diagram BPMN proses bisnis 3"
-                   data-en-alt="BPMN diagram of business process 3" data-id-alt="Diagram BPMN proses bisnis 3">
-            </div>
-            <figcaption data-en="Business Process 3" data-id="Proses Bisnis 3">Proses Bisnis 3</figcaption>
-          </figure>
-
-          <figure class="figure">
-            <div class="figure-media">
-              <img src="images/siaga-bpmn-4.png" alt="Diagram BPMN proses bisnis 4"
-                   data-en-alt="BPMN diagram of business process 4" data-id-alt="Diagram BPMN proses bisnis 4">
-            </div>
-            <figcaption data-en="Business Process 4" data-id="Proses Bisnis 4">Proses Bisnis 4</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== F. PERANCANGAN SISTEM ===================== -->
-    <section id="mockup" class="section-alt">
+    <!-- ===================== 5. PERANCANGAN SISTEM ===================== -->
+    <section id="perancangan" class="section-alt">
       <div class="container">
         <p class="section-label" data-en="Design" data-id="Perancangan">Perancangan</p>
         <h2 data-en="System Design" data-id="Perancangan Sistem">Perancangan Sistem</h2>
         <p class="section-intro"
-           data-en="The system design includes the class diagram, use case diagram, and menu structure as the basis for SIAGA development."
-           data-id="Perancangan sistem meliputi class diagram, use case diagram, dan struktur menu sebagai dasar pengembangan SIAGA.">Perancangan sistem meliputi class diagram, use case diagram, dan struktur menu sebagai dasar pengembangan SIAGA.</p>
+           data-en="The use case diagram, class diagram, and menu structure serve as the basis for SIAGA development."
+           data-id="Use case diagram, class diagram, dan struktur menu menjadi dasar pengembangan SIAGA.">Use case diagram, class diagram, dan struktur menu menjadi dasar pengembangan SIAGA.</p>
 
         <div class="system-design-grid">
-          <figure class="figure">
-            <div class="figure-media">
-              <img src="images/siaga-class-diagram.png" alt="Class diagram SIAGA"
-                   data-en-alt="SIAGA class diagram" data-id-alt="Class diagram SIAGA">
-            </div>
-            <figcaption data-en="Class Diagram" data-id="Class Diagram">Class Diagram</figcaption>
-          </figure>
-
           <figure class="figure">
             <div class="figure-media">
               <img src="images/siaga-use-case.png" alt="Use case diagram SIAGA"
                    data-en-alt="SIAGA use case diagram" data-id-alt="Use case diagram SIAGA">
             </div>
             <figcaption data-en="Use Case Diagram" data-id="Use Case Diagram">Use Case Diagram</figcaption>
+          </figure>
+
+          <figure class="figure">
+            <div class="figure-media">
+              <img src="images/siaga-class-diagram.png" alt="Class diagram SIAGA"
+                   data-en-alt="SIAGA class diagram" data-id-alt="Class diagram SIAGA">
+            </div>
+            <figcaption data-en="Class Diagram" data-id="Class Diagram">Class Diagram</figcaption>
           </figure>
 
           <figure class="figure menu-structure">
@@ -298,25 +447,46 @@
             <figcaption data-en="Menu Structure" data-id="Struktur Menu">Struktur Menu</figcaption>
           </figure>
         </div>
+
+        <!--
+          PERANCANGAN ANTARMUKA (opsional)
+          Aktifkan blok ini hanya jika ada hasil desain yang layak ditampilkan.
+          Hapus tanda komentar, lalu ganti nama file gambar.
+
+        <div class="sub-block">
+          <h3 data-en="Interface Design" data-id="Perancangan Antarmuka">Perancangan Antarmuka</h3>
+          <div class="system-design-grid">
+            <figure class="figure">
+              <div class="figure-media">
+                <img src="images/siaga-ui-1.png" alt="Rancangan antarmuka SIAGA"
+                     data-en-alt="SIAGA interface design" data-id-alt="Rancangan antarmuka SIAGA">
+              </div>
+              <figcaption data-en="Interface Design" data-id="Rancangan Antarmuka">Rancangan Antarmuka</figcaption>
+            </figure>
+          </div>
+        </div>
+        -->
       </div>
     </section>
 
-    <!-- ===================== G. HASIL PEKERJAAN ===================== -->
+    <!-- ===================== 6. HASIL PEKERJAAN ===================== -->
     <section id="hasil">
       <div class="container">
         <p class="section-label" data-en="Results" data-id="Hasil">Hasil</p>
         <h2 data-en="Deliverables" data-id="Hasil Pekerjaan">Hasil Pekerjaan</h2>
         <p class="section-intro"
-           data-en="The analysis and system design outputs I prepared during the internship:"
-           data-id="Hasil analisis dan perancangan sistem yang saya susun selama magang:">Hasil analisis dan perancangan sistem yang saya susun selama magang:</p>
+           data-en="A summary of the documents and analysis and design results I prepared during the internship:"
+           data-id="Ringkasan dokumen serta hasil analisis dan perancangan yang saya susun selama magang:">Ringkasan dokumen serta hasil analisis dan perancangan yang saya susun selama magang:</p>
 
         <ul class="result-list">
-          <li data-en="User requirements analysis, covering the background, problems, objectives, and roles of SIAGA users."
-              data-id="Analisis kebutuhan pengguna yang mencakup latar belakang, permasalahan, tujuan, dan peran pengguna SIAGA.">Analisis kebutuhan pengguna yang mencakup latar belakang, permasalahan, tujuan, dan peran pengguna SIAGA.</li>
+          <li data-en="Requirements and business condition analysis: background, problem statement, objectives, scope, and business users."
+              data-id="Analisis kebutuhan dan kondisi bisnis: latar belakang, rumusan masalah, tujuan, ruang lingkup, dan business user.">Analisis kebutuhan dan kondisi bisnis: latar belakang, rumusan masalah, tujuan, ruang lingkup, dan business user.</li>
           <li data-en="Analysis of existing business processes documented in four BPMN diagrams."
-              data-id="Analisis proses bisnis yang sedang berjalan dan didokumentasikan dalam empat diagram BPMN.">Analisis proses bisnis yang sedang berjalan dan didokumentasikan dalam empat diagram BPMN.</li>
-          <li data-en="System design documentation consisting of a class diagram, use case diagram, and menu structure."
-              data-id="Dokumentasi perancangan sistem yang terdiri dari class diagram, use case diagram, dan struktur menu.">Dokumentasi perancangan sistem yang terdiri dari class diagram, use case diagram, dan struktur menu.</li>
+              data-id="Analisis proses bisnis yang sedang berjalan, didokumentasikan dalam empat diagram BPMN.">Analisis proses bisnis yang sedang berjalan, didokumentasikan dalam empat diagram BPMN.</li>
+          <li data-en="System evaluation and requirements: PIECES, KANO, objectives, user, functional, and non-functional requirements."
+              data-id="Evaluasi dan kebutuhan sistem: PIECES, KANO, tujuan, kebutuhan pengguna, fungsional, dan nonfungsional.">Evaluasi dan kebutuhan sistem: PIECES, KANO, tujuan, kebutuhan pengguna, fungsional, dan nonfungsional.</li>
+          <li data-en="System design: use case diagram, class diagram, and menu structure."
+              data-id="Perancangan sistem: use case diagram, class diagram, dan struktur menu.">Perancangan sistem: use case diagram, class diagram, dan struktur menu.</li>
         </ul>
 
         <p class="stage-note"
@@ -325,11 +495,14 @@
       </div>
     </section>
 
-    <!-- ===================== H. REFLEKSI DAN PEMBELAJARAN ===================== -->
+    <!-- ===================== 7. REFLEKSI DAN PEMBELAJARAN ===================== -->
     <section id="refleksi" class="section-alt">
       <div class="container">
         <p class="section-label" data-en="Reflection" data-id="Refleksi">Refleksi</p>
         <h2 data-en="Reflection and Lessons Learned" data-id="Refleksi dan Pembelajaran">Refleksi dan Pembelajaran</h2>
+        <p class="section-intro"
+           data-en="What I learned while analyzing and designing the system."
+           data-id="Hal yang saya pelajari selama melakukan analisis dan perancangan sistem.">Hal yang saya pelajari selama melakukan analisis dan perancangan sistem.</p>
 
         <div class="reflection-grid">
           <article class="reflection-card">
@@ -351,7 +524,7 @@
       </div>
     </section>
 
-    <!-- ===================== I. PENUTUP DAN KONTAK ===================== -->
+    <!-- ===================== PENUTUP DAN KONTAK ===================== -->
     <section id="kontak">
       <div class="container">
         <div class="contact-box">
